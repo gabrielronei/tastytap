@@ -2,7 +2,7 @@ FROM maven:3-amazoncorretto-21 as build
 
 WORKDIR /app
 
-COPY . /project
+COPY . .
 
 RUN mvn clean package -DskipTests \
     && rm -rf /root/.m2
