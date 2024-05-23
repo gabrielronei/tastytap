@@ -3,13 +3,16 @@ package br.com.fiap.tastytap.presentation.user;
 import br.com.fiap.tastytap.application.user.SimpleUserView;
 import br.com.fiap.tastytap.application.user.create.CreateUserUseCase;
 import br.com.fiap.tastytap.application.user.find.FindUserUseCase;
+import br.com.fiap.tastytap.utils.ValidationUtils;
 import jakarta.validation.Valid;
+import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -43,6 +46,10 @@ public class UserController implements UserControllerDocs {
 
     @GetMapping("/user/{cpf}")
     public ResponseEntity findBy(@PathVariable String cpf) {
+        if (!ValidationUtils.isValidCpf(cpf)) {
+            return ResponseEntity.badRequest().body(Map.of("message", "CPF invalido!"));
+        }
+
         return findUserUseCase.execute(cpf).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 

@@ -29,6 +29,7 @@ interface UserControllerDocs {
             description = "Retorna um usuario pelo CPF, se for encontrado")
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = SimpleUserView.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "400", description = "O numero fornecido não é reconhecido como um cpf", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "404", description = "O CPF do usuario fornecido não foi encontrado", content = { @Content(schema = @Schema()) })
     })
     ResponseEntity findBy(@PathVariable String cpf);
