@@ -4,6 +4,7 @@ import br.com.fiap.tastytap.application.user.SimpleUserView;
 import br.com.fiap.tastytap.application.user.create.CreateUserUseCase;
 import br.com.fiap.tastytap.application.user.find.FindUserUseCase;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.WebDataBinder;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-public class UserController extends UserControllerDocs {
+public class UserController implements UserControllerDocs {
 
     private final CreateUserUseCase createUserUseCase;
     private final FindUserUseCase findUserUseCase;
@@ -36,11 +37,12 @@ public class UserController extends UserControllerDocs {
 
         Optional<SimpleUserView> possibleView = createUserUseCase.execute(form);
 
-        return possibleView.map(ResponseEntity::ok).orElse(ResponseEntity.badRequest().build());
+        return possibleView.map(view -> ResponseEntity.status(HttpStatus.CREATED).body(view))
+                .orElse(ResponseEntity.badRequest().build());
     }
 
     @GetMapping("/user/{cpf}")
-    public ResponseEntity findBy(@RequestParam String cpf) {
+    public ResponseEntity findBy(@PathVariable String cpf) {
         return findUserUseCase.execute(cpf).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
