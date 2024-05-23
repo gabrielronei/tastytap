@@ -4,7 +4,7 @@ import br.com.fiap.tastytap.domain.product.Product;
 
 import java.math.BigDecimal;
 
-public class ProductView {
+public final class SimpleProductView {
 
     private final Long id;
     private final String name;
@@ -14,7 +14,7 @@ public class ProductView {
     private final String category;
     private final BigDecimal price;
 
-    public ProductView(Product product) {
+    public SimpleProductView(Product product) {
         this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();

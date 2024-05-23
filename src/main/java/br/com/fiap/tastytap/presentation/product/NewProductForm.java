@@ -1,4 +1,4 @@
-package br.com.fiap.tastytap.presentation;
+package br.com.fiap.tastytap.presentation.product;
 
 import br.com.fiap.tastytap.application.product.create.NewProductCommand;
 import br.com.fiap.tastytap.domain.product.Category;

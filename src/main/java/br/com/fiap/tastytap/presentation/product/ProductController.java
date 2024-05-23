@@ -1,6 +1,6 @@
-package br.com.fiap.tastytap.presentation;
+package br.com.fiap.tastytap.presentation.product;
 
-import br.com.fiap.tastytap.application.product.ProductView;
+import br.com.fiap.tastytap.application.product.SimpleProductView;
 import br.com.fiap.tastytap.application.product.create.CreateProductUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class ProductController extends ProductControllerDocs {
     @PostMapping("/product")
     public ResponseEntity save(@Valid @RequestBody NewProductForm form) {
 
-        Optional<ProductView> possibleView = createProductUseCase.execute(form);
+        Optional<SimpleProductView> possibleView = createProductUseCase.execute(form);
 
         return possibleView.map(ResponseEntity::ok).orElse(ResponseEntity.badRequest().build());
     }

@@ -1,4 +1,4 @@
-package br.com.fiap.tastytap.presentation;
+package br.com.fiap.tastytap.presentation.product;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 

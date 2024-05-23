@@ -3,9 +3,9 @@ package br.com.fiap.tastytap.insfraestructure.product;
 import br.com.fiap.tastytap.application.product.create.CreateProductUseCase;
 import br.com.fiap.tastytap.application.product.create.DefaultCreateProductUseCase;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Controller;
+import org.springframework.context.annotation.Configuration;
 
-@Controller
+@Configuration
 public class ProductUseCaseConfiguration {
 
     private DefaultProductGateway defaultProductGateway;
