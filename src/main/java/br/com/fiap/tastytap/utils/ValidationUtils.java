@@ -17,6 +17,14 @@ public class ValidationUtils {
         return cpfValidator.isValid(cpf, null);
     }
 
+    public static void hasValidCPF(String string, String message) {
+        notNull(string, message);
+        boolean validCpf = isValidCpf(string);
+        if(!validCpf) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
     public static void notBlank(String string, String message) {
         notNull(string, message);
         if(string.isBlank()) {

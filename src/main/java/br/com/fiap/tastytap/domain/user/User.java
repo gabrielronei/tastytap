@@ -16,7 +16,7 @@ public class User {
     public User(String name, String email, String cpf) {
         ValidationUtils.notBlank(name, "Name cannot be blank");
         ValidationUtils.notBlank(email, "Email cannot be blank");
-        ValidationUtils.notBlank(cpf, "Cpf cannot be blank");
+        ValidationUtils.hasValidCPF(cpf, "CPF cannot be blank or should be a valid cpf");
 
         this.name = name;
         this.email = email;
@@ -25,6 +25,10 @@ public class User {
 
     public User(Long id, String name, String email, String cpf, LocalDateTime createdAt, Role role) {
         this(name, email, cpf);
+        ValidationUtils.notNull(id, "Id cannot be null");
+        ValidationUtils.notNull(createdAt, "CreatedAt cannot be null");
+        ValidationUtils.notNull(role, "Role cannot be null");
+
         this.id = id;
         this.createdAt = createdAt;
         this.role = role;
