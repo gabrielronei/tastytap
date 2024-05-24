@@ -24,6 +24,7 @@ public class UserEntity {
     private String email;
 
     @CPF
+    @Column(unique = true)
     private String cpf;
 
     @NotNull
