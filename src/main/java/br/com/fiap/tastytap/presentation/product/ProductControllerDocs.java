@@ -14,8 +14,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Tag(name = "Product", description = "API de gerenciamento de produtos")
 interface ProductControllerDocs {
+
+    @Operation(
+            summary = "Busca todos os produtos por categoria",
+            description = "Retorna todos os produtos de uma determinada categoria")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = List.class), mediaType = "application/json")}),
+            @ApiResponse(responseCode = "404", description = "A categoria fornecida não foi encontrada", content = {@Content(schema = @Schema())})
+    })
+    ResponseEntity findBy(@Valid @RequestParam("categoryName") String possibleCategoryName);
 
     @Operation(
             summary = "Cadastra um novo produto",

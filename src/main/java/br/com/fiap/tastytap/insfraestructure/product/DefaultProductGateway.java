@@ -1,9 +1,11 @@
 package br.com.fiap.tastytap.insfraestructure.product;
 
 import br.com.fiap.tastytap.application.product.ProductGateway;
+import br.com.fiap.tastytap.domain.product.Category;
 import br.com.fiap.tastytap.domain.product.Product;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +32,10 @@ public final class DefaultProductGateway implements ProductGateway {
     public boolean delete(Product product) {
         productRepository.deleteById(product.getId());
         return true;
+    }
+
+    @Override
+    public List<Product> findAllByCategory(Category category) {
+        return productRepository.findAllByCategory(category).stream().map(ProductEntity::toDomain).toList();
     }
 }

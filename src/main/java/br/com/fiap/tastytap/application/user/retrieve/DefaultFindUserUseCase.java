@@ -1,4 +1,4 @@
-package br.com.fiap.tastytap.application.user.find;
+package br.com.fiap.tastytap.application.user.retrieve;
 
 import br.com.fiap.tastytap.application.user.SimpleUserView;
 import br.com.fiap.tastytap.application.user.UserGateway;

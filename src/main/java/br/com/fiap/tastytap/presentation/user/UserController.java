@@ -2,10 +2,9 @@ package br.com.fiap.tastytap.presentation.user;
 
 import br.com.fiap.tastytap.application.user.SimpleUserView;
 import br.com.fiap.tastytap.application.user.create.CreateUserUseCase;
-import br.com.fiap.tastytap.application.user.find.FindUserUseCase;
+import br.com.fiap.tastytap.application.user.retrieve.FindUserUseCase;
 import br.com.fiap.tastytap.utils.ValidationUtils;
 import jakarta.validation.Valid;
-import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
