@@ -1,6 +1,7 @@
 package br.com.fiap.tastytap.domain.order;
 
 import br.com.fiap.tastytap.domain.product.Product;
+import br.com.fiap.tastytap.utils.ValidationUtils;
 
 import java.math.BigDecimal;
 
@@ -12,6 +13,9 @@ public class OrderItem {
     private BigDecimal total;
 
     public OrderItem(Product product, Integer quantity) {
+        ValidationUtils.notNull(product, "Product must not be null");
+        ValidationUtils.isTrue(quantity > 0, "quantity should be greater than zero");
+
         this.product = product;
         this.quantity = quantity;
         this.total = product.getPrice().multiply(BigDecimal.valueOf(quantity));

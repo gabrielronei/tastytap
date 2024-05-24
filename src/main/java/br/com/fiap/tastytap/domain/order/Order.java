@@ -1,6 +1,7 @@
 package br.com.fiap.tastytap.domain.order;
 
 import br.com.fiap.tastytap.domain.user.User;
+import br.com.fiap.tastytap.utils.ValidationUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -10,23 +11,31 @@ public class Order {
 
     private Long id;
     private User user;
-    private List<OrderItem> products = new ArrayList<>();
+    private List<OrderItem> items = new ArrayList<>();
     private BigDecimal total;
     private LocalDateTime createdAt = LocalDateTime.now();
     private Status status = Status.RECEIVED;
 
+    public Order(List<OrderItem> items) {
+        ValidationUtils.notNull(items, "items cannot be null");
+        ValidationUtils.isTrue(!items.isEmpty(), "items should not be empty");
+
+        this.items = items;
+        this.total = items.stream().map(OrderItem::getTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     public Order(Long id, List<OrderItem> items, BigDecimal total, LocalDateTime createdAt, Status status) {
+        ValidationUtils.notNull(id, "id cannot be null");
+        ValidationUtils.notNull(items, "items cannot be null");
+        ValidationUtils.notNull(total, "total cannot be null");
+        ValidationUtils.notNull(createdAt, "createdAt cannot be null");
+        ValidationUtils.notNull(status, "status cannot be null");
+
         this.id = id;
-        this.products = items;
+        this.items = items;
         this.total = total;
         this.createdAt = createdAt;
         this.status = status;
-    }
-
-    public Order(List<OrderItem> items) {
-        this.products = items;
-        this.total = items.stream().map(OrderItem::getTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
-        ;
     }
 
     public void setUser(User user) {
@@ -42,7 +51,7 @@ public class Order {
     }
 
     public List<OrderItem> getOrderItems() {
-        return products;
+        return items;
     }
 
     public BigDecimal getTotal() {

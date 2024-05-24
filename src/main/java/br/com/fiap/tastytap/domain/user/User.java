@@ -16,7 +16,7 @@ public class User {
     public User(String name, String email, String cpf) {
         ValidationUtils.notBlank(name, "Name cannot be blank");
         ValidationUtils.notBlank(email, "Email cannot be blank");
-        ValidationUtils.hasValidCPF(cpf, "CPF cannot be blank or should be a valid cpf");
+        ValidationUtils.notBlank(cpf, "CPF cannot be blank");
 
         this.name = name;
         this.email = email;
