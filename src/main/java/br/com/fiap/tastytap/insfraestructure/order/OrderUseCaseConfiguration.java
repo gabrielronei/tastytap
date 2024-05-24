@@ -2,6 +2,8 @@ package br.com.fiap.tastytap.insfraestructure.order;
 
 import br.com.fiap.tastytap.application.order.create.CreateOrderUseCase;
 import br.com.fiap.tastytap.application.order.create.DefaultCreateOrderUseCase;
+import br.com.fiap.tastytap.application.order.retrieve.DefaultFindOrdersUseCase;
+import br.com.fiap.tastytap.application.order.retrieve.FindOrdersUseCase;
 import br.com.fiap.tastytap.insfraestructure.product.DefaultProductGateway;
 import br.com.fiap.tastytap.insfraestructure.user.DefaultUserGateway;
 import org.springframework.context.annotation.Bean;
@@ -25,5 +27,10 @@ public class OrderUseCaseConfiguration {
     @Bean
     public CreateOrderUseCase createOrderUseCase() {
         return new DefaultCreateOrderUseCase(defaultOrderGateway, defaultProductGateway, defaultUserGateway);
+    }
+
+    @Bean
+    public FindOrdersUseCase findOrdersUseCase() {
+        return new DefaultFindOrdersUseCase(defaultOrderGateway);
     }
 }
