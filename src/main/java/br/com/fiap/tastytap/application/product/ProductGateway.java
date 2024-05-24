@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ProductGateway {
 
-    Product create(Product product);
+    Product persist(Product product);
     Optional<Product> findById(Long id);
     boolean delete(Product product);
 }

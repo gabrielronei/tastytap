@@ -1,10 +1,12 @@
 package br.com.fiap.tastytap.domain.product;
 
+import br.com.fiap.tastytap.application.product.update.UpdateProductCommand;
+import br.com.fiap.tastytap.utils.DateFormatterUtils;
 import br.com.fiap.tastytap.utils.ValidationUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class Product {
 
@@ -15,6 +17,7 @@ public class Product {
     private BigDecimal price;
     private Category category;
     private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime updatedAt;
 
     public Product(String name, String description, String imageURL, BigDecimal price, Category category) {
         ValidationUtils.notBlank(name, "Product name cannot be blank");
@@ -31,11 +34,13 @@ public class Product {
         this.imageURL = imageURL;
     }
 
-    public Product(Long id, String name, String description, String imageURL, BigDecimal price, Category category) {
+    public Product(Long id, String name, String description, String imageURL, BigDecimal price, Category category, LocalDateTime createdAt) {
         this(name, description, imageURL, price, category);
 
         ValidationUtils.notNull(id, "id price cannot be null");
+        ValidationUtils.notNull(createdAt, "createdAt cannot be null");
         this.id = id;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -62,16 +67,35 @@ public class Product {
         return createdAt;
     }
 
+    public Optional<LocalDateTime> getUpdatedAt() {
+        return Optional.ofNullable(updatedAt);
+    }
+
     public String getCategoryDescription() {
         return category.getDescription();
     }
 
     public String getFormattedCreatedAt() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return dateTimeFormatter.format(createdAt);
+        return DateFormatterUtils.format(this.createdAt);
+    }
+
+    public String getFormattedUpdatedAt() {
+        return DateFormatterUtils.format(this.updatedAt);
     }
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public void update(UpdateProductCommand updateProductCommand) {
+        this.id = updateProductCommand.getId();
+        this.description = updateProductCommand.getDescription();
+        this.price = updateProductCommand.getPrice();
+        this.imageURL = updateProductCommand.getImageURL();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

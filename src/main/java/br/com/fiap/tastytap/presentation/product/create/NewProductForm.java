@@ -1,4 +1,4 @@
-package br.com.fiap.tastytap.presentation.product;
+package br.com.fiap.tastytap.presentation.product.create;
 
 import br.com.fiap.tastytap.application.product.create.NewProductCommand;
 import br.com.fiap.tastytap.domain.product.Category;
@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.URL;
 
 import java.math.BigDecimal;
 
-public class NewProductForm implements NewProductCommand {
+public final class NewProductForm implements NewProductCommand {
 
     @NotBlank(message = "Nome não pode estar em branco ou nulo!")
     private final String name;

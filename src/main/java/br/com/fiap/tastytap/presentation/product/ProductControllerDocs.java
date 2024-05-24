@@ -1,6 +1,7 @@
 package br.com.fiap.tastytap.presentation.product;
 
 import br.com.fiap.tastytap.application.product.SimpleProductView;
+import br.com.fiap.tastytap.presentation.product.create.NewProductForm;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -16,7 +16,7 @@ public final class DefaultProductGateway implements ProductGateway {
     }
 
     @Override
-    public Product create(Product product) {
+    public Product persist(Product product) {
         ProductEntity entity = productRepository.save(new ProductEntity(product));
         return entity.toDomain();
     }

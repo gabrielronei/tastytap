@@ -16,7 +16,7 @@ public final class DefaultCreateProductUseCase extends CreateProductUseCase {
 
     @Override
     public Optional<SimpleProductView> execute(NewProductCommand newProductCommand) {
-        Product product = this.productGateway.create(newProductCommand.toProduct());
+        Product product = this.productGateway.persist(newProductCommand.toProduct());
 
         //validar o produto
         return product != null ? Optional.of(new SimpleProductView(product)) : Optional.empty();

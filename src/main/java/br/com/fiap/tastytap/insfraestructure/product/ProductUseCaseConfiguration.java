@@ -4,6 +4,8 @@ import br.com.fiap.tastytap.application.product.create.CreateProductUseCase;
 import br.com.fiap.tastytap.application.product.create.DefaultCreateProductUseCase;
 import br.com.fiap.tastytap.application.product.delete.DefaultDeleteProductUseCase;
 import br.com.fiap.tastytap.application.product.delete.DeleteProductUseCase;
+import br.com.fiap.tastytap.application.product.update.DefaultUpdateProductUseCase;
+import br.com.fiap.tastytap.application.product.update.UpdateProductUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +21,11 @@ public class ProductUseCaseConfiguration {
     @Bean
     public CreateProductUseCase createCategoryUseCase() {
         return new DefaultCreateProductUseCase(defaultProductGateway);
+    }
+
+    @Bean
+    public UpdateProductUseCase updateProductUseCase() {
+        return new DefaultUpdateProductUseCase(defaultProductGateway);
     }
 
     @Bean

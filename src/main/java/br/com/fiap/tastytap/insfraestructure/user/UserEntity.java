@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "user")
 public class UserEntity {
 
     @Id

@@ -11,6 +11,7 @@ public final class SimpleProductView {
     private final String description;
     private final String imageURL;
     private final String createdAt;
+    private final String updatedAt;
     private final String category;
     private final BigDecimal price;
 
@@ -20,6 +21,7 @@ public final class SimpleProductView {
         this.description = product.getDescription();
         this.imageURL = product.getImageURL();
         this.createdAt = product.getFormattedCreatedAt();
+        this.updatedAt = product.getFormattedUpdatedAt();
         this.category = product.getCategoryDescription();
         this.price = product.getPrice();
     }
@@ -42,6 +44,10 @@ public final class SimpleProductView {
 
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
     public String getCategory() {
