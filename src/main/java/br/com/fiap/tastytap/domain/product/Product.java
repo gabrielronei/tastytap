@@ -21,7 +21,7 @@ public class Product {
         ValidationUtils.notBlank(description, "Description name cannot be blank");
         ValidationUtils.notBlank(imageURL, "Description name cannot be blank");
         ValidationUtils.notNull(price, "Product price cannot be null");
-        ValidationUtils.isTrue(price.compareTo(BigDecimal.ONE) > 0, "Product price should be positive");
+        ValidationUtils.isTrue(price.compareTo(BigDecimal.ONE) >= 0, "Product price should be positive");
         ValidationUtils.notNull(category, "Product category cannot be null");
 
         this.name = name;

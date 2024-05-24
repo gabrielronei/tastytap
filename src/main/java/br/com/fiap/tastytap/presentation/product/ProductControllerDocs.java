@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Tag(name = "Product", description = "API de gerenciamento de produtos")
 interface ProductControllerDocs {
@@ -23,4 +24,13 @@ interface ProductControllerDocs {
             @ApiResponse(responseCode = "500", description = "Erro interno do sistema", content = {@Content(schema = @Schema())})
     })
     ResponseEntity save(@Valid @RequestBody NewProductForm form);
+
+    @Operation(
+            summary = "Exclui um produto existente",
+            description = "Exclui um produto cadastrado no sistema")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Produto excluído com sucesso", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "404", description = "O Id do produto fornecido não foi encontrado", content = { @Content(schema = @Schema()) }),
+    })
+    ResponseEntity deleteById(@RequestParam Long id);
 }

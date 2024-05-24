@@ -23,8 +23,8 @@ public class NewProductForm implements NewProductCommand {
     @NotNull
     private final Category category;
 
-    @Min(value = 1)
     @NotNull
+    @DecimalMin(value = "1")
     private final BigDecimal price;
 
     public NewProductForm(String name, String description, String imageURL, Category category, BigDecimal price) {
