@@ -38,4 +38,9 @@ public final class DefaultProductGateway implements ProductGateway {
     public List<Product> findAllByCategory(Category category) {
         return productRepository.findAllByCategory(category).stream().map(ProductEntity::toDomain).toList();
     }
+
+    @Override
+    public List<Product> findAllByIdIn(List<Long> ids) {
+        return productRepository.findAllByIdIn(ids).stream().map(ProductEntity::toDomain).toList();
+    }
 }

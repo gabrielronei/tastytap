@@ -27,9 +27,10 @@ public class ProductEntity {
 
     @URL
     @NotBlank
+    @Column(length = 500)
     private String imageURL;
 
-    @Min(value = 1)
+    @DecimalMin(value = "1")
     private BigDecimal price;
 
     @NotNull

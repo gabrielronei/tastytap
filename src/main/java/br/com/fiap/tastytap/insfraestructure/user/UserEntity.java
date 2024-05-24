@@ -38,6 +38,7 @@ public class UserEntity {
     }
 
     public UserEntity(User user) {
+        this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
         this.cpf = user.getCpf();
