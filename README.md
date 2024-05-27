@@ -46,8 +46,8 @@ A instalação é bem simples, siga as seguintes etapas:
    ```sh
    docker compose up
    ```
-4. Para acessar a documentação no swagger, acesse em seu navegador
-   ```sh
+4. Para acessar a documentação no swagger, acesse em seu navegador.
+   ```
    http://localhost:8080/
    ```
 

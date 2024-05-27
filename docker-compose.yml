@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   mysqldb:
     image: mysql:8.3.0
@@ -8,7 +10,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: very_secure_password
       MYSQL_DATABASE: tastytap
-      MYSQL_USER: root
       MYSQL_PASSWORD: very_secure_password
     networks:
       - default
