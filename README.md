@@ -20,6 +20,8 @@
 
 Projeto realizado para a primeira entrega da pós graduação em [Software Architecture da FIAP](https://postech.fiap.com.br/curso/software-architecture/).
 
+Link do miro: https://miro.com/app/board/uXjVKTJ4mvk=/?share_link_id=556895060297
+
 
 ## Começando
 
