@@ -1,11 +1,6 @@
 package br.com.fiap.tastytap.application.product.update;
 
-import java.math.BigDecimal;
+import br.com.fiap.tastytap.domain.product.FieldsToUpdateProduct;
 
-public interface UpdateProductCommand {
-
-    Long getId();
-    String getDescription();
-    String getImageURL();
-    BigDecimal getPrice();
+public interface UpdateProductCommand extends FieldsToUpdateProduct {
 }

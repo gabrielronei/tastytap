@@ -1,6 +1,5 @@
 package br.com.fiap.tastytap.domain.product;
 
-import br.com.fiap.tastytap.application.product.update.UpdateProductCommand;
 import br.com.fiap.tastytap.utils.DateFormatterUtils;
 import br.com.fiap.tastytap.utils.ValidationUtils;
 
@@ -87,11 +86,11 @@ public class Product {
         return price;
     }
 
-    public void update(UpdateProductCommand updateProductCommand) {
-        this.id = updateProductCommand.getId();
-        this.description = updateProductCommand.getDescription();
-        this.price = updateProductCommand.getPrice();
-        this.imageURL = updateProductCommand.getImageURL();
+    public void update(FieldsToUpdateProduct updateProduct) {
+        this.id = updateProduct.getId();
+        this.description = updateProduct.getDescription();
+        this.price = updateProduct.getPrice();
+        this.imageURL = updateProduct.getImageURL();
         this.updatedAt = LocalDateTime.now();
     }
 
