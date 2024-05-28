@@ -43,4 +43,9 @@ public final class DefaultProductGateway implements ProductGateway {
     public List<Product> findAllByIdIn(List<Long> ids) {
         return productRepository.findAllByIdIn(ids).stream().map(ProductEntity::toDomain).toList();
     }
+
+    @Override
+    public boolean hasItems(Long productId) {
+        return productRepository.hasItems(productId);
+    }
 }

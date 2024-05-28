@@ -17,4 +17,6 @@ public interface ProductGateway {
     List<Product> findAllByCategory(Category category);
 
     List<Product> findAllByIdIn(List<Long> ids);
+
+    boolean hasItems(Long productId);
 }

@@ -16,6 +16,7 @@ public final class DefaultDeleteProductUseCase extends DeleteProductUseCase {
     @Override
     public Boolean execute(Long productId) {
         Optional<Product> possibleProduct = productGateway.findById(productId);
-        return possibleProduct.filter(productGateway::delete).isPresent();
+        return possibleProduct.filter(product -> !productGateway.hasItems(product.getId()))
+                .filter(productGateway::delete).isPresent();
     }
 }

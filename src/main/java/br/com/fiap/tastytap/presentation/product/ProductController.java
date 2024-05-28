@@ -1,5 +1,6 @@
 package br.com.fiap.tastytap.presentation.product;
 
+import br.com.fiap.tastytap.application.product.ProductGateway;
 import br.com.fiap.tastytap.application.product.SimpleProductView;
 import br.com.fiap.tastytap.application.product.create.CreateProductUseCase;
 import br.com.fiap.tastytap.application.product.delete.DeleteProductUseCase;
@@ -23,17 +24,19 @@ public class ProductController implements ProductControllerDocs {
     private final CreateProductUseCase createProductUseCase;
     private final UpdateProductUseCase updateProductUseCase;
     private final DeleteProductUseCase deleteProductUseCase;
+    private final ProductGateway productGateway;
 
     public ProductController(FindProductsByCategoryUseCase findProductsByCategoryUseCase,
                              CreateProductUseCase createProductUseCase,
                              UpdateProductUseCase updateProductUseCase,
-                             DeleteProductUseCase deleteProductUseCase) {
+                             DeleteProductUseCase deleteProductUseCase,
+                             ProductGateway productGateway) {
         this.findProductsByCategoryUseCase = findProductsByCategoryUseCase;
         this.createProductUseCase = createProductUseCase;
         this.updateProductUseCase = updateProductUseCase;
         this.deleteProductUseCase = deleteProductUseCase;
+        this.productGateway = productGateway;
     }
-
 
     @GetMapping("/product/{categoryName}")
     public ResponseEntity findBy(@Valid @RequestParam("categoryName") String possibleCategoryName) {
@@ -63,6 +66,9 @@ public class ProductController implements ProductControllerDocs {
     @Transactional
     @DeleteMapping("/product/{id}")
     public ResponseEntity deleteById(@RequestParam Long id) {
+        boolean hasItemAssociated = this.productGateway.hasItems(id);
+        if (hasItemAssociated) return ResponseEntity.badRequest().body("O produto não pode ser deletado pois tem item associado!");
+
         Boolean hasBeenDeleted = deleteProductUseCase.execute(id);
 
         return hasBeenDeleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
