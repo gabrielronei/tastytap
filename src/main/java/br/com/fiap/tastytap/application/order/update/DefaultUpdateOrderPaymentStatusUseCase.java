@@ -14,7 +14,7 @@ public class DefaultUpdateOrderPaymentStatusUseCase extends UpdateOrderPaymentSt
     }
 
     public void execute(UpdateOrderPaymentStatusCommand command) {
-        Optional<Order> possibleOrder = orderGateway.findByNumber(command.orderNumber());
+        Optional<Order> possibleOrder = orderGateway.findByTransactionId(command.transactionId());
         possibleOrder.filter(Order::isValidToPay).ifPresent(order -> {
             order.setPaymentStatus(command.status());
             orderGateway.persist(order);

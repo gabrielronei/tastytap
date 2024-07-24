@@ -5,6 +5,6 @@ import br.com.fiap.tastytap.domain.order.PaymentStatus;
 import jakarta.validation.constraints.NotNull;
 
 public record PaymentNotificationRequest(
-        @NotNull Long orderNumber,
+        @NotNull Long transactionId,
         @NotNull PaymentStatus status) implements UpdateOrderPaymentStatusCommand {
 }

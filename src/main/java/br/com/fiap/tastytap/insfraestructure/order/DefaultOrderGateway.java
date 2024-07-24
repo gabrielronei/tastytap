@@ -31,4 +31,9 @@ public final class DefaultOrderGateway implements OrderGateway {
     public Optional<Order> findByNumber(Long number) {
         return this.orderRepository.findByNumber(number).map(OrderEntity::toDomain);
     }
+
+    @Override
+    public Optional<Order> findByTransactionId(Long transactionId) {
+        return this.orderRepository.findByTransactionId(transactionId).map(OrderEntity::toDomain);
+    }
 }

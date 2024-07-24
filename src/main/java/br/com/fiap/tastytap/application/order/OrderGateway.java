@@ -9,4 +9,5 @@ public interface OrderGateway {
     Order persist(Order order);
     List<Order> findAll();
     Optional<Order> findByNumber(Long number);
+    Optional<Order> findByTransactionId(Long transactionId);
 }

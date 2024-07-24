@@ -26,4 +26,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     """, countQuery = "SELECT COUNT(*) FROM orders o WHERE o.status != 'FINISHED'",
         nativeQuery = true)
     List<OrderEntity> findAllOrdersOrderByStatus();
+
+    Optional<OrderEntity> findByTransactionId(Long transactionId);
 }
