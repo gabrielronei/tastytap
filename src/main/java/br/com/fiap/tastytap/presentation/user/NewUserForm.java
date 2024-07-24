@@ -36,8 +36,8 @@ public class NewUserForm implements NewUserCommand {
     }
 
     @Override
-    public String getCPF() {
-        return this.cpf;
+    public br.com.fiap.tastytap.domain.user.CPF getCPF() {
+        return new br.com.fiap.tastytap.domain.user.CPF(this.cpf);
     }
 
     @Override
