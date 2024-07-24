@@ -3,6 +3,7 @@ package br.com.fiap.tastytap.presentation.order;
 import br.com.fiap.tastytap.application.order.create.CreateOrderUseCase;
 import br.com.fiap.tastytap.application.order.create.NewOrderView;
 import br.com.fiap.tastytap.application.order.retrieve.FindOrdersUseCase;
+import br.com.fiap.tastytap.application.order.retrieve.GetOrderStatusByNumber;
 import br.com.fiap.tastytap.application.user.UserGateway;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -18,13 +19,16 @@ public class OrderController implements OrderControllerDocs {
     private final UserGateway userGateway;
     private final CreateOrderUseCase createOrderUseCase;
     private final FindOrdersUseCase findOrdersUseCase;
+    private final GetOrderStatusByNumber getOrderStatusByNumber;
 
     public OrderController(UserGateway userGateway,
                            CreateOrderUseCase createOrderUseCase,
-                           FindOrdersUseCase findOrdersUseCase) {
+                           FindOrdersUseCase findOrdersUseCase,
+                           GetOrderStatusByNumber getOrderStatusByNumber) {
         this.userGateway = userGateway;
         this.createOrderUseCase = createOrderUseCase;
         this.findOrdersUseCase = findOrdersUseCase;
+        this.getOrderStatusByNumber = getOrderStatusByNumber;
     }
 
     @InitBinder("newOrderForm")
@@ -43,5 +47,12 @@ public class OrderController implements OrderControllerDocs {
 
         return possibleOrder.map(order -> ResponseEntity.status(HttpStatus.CREATED).body(order))
                 .orElse(ResponseEntity.badRequest().build());
+    }
+
+    @GetMapping("/order/{number}/status")
+    public ResponseEntity<?> checkStatus(@PathVariable("number") Long number) {
+        return this.getOrderStatusByNumber.execute(number)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
