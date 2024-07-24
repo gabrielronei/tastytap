@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 public class ProductController implements ProductControllerDocs {
@@ -38,34 +38,32 @@ public class ProductController implements ProductControllerDocs {
         this.productGateway = productGateway;
     }
 
-    @GetMapping("/product/{categoryName}")
-    public ResponseEntity findBy(@Valid @RequestParam("categoryName") String possibleCategoryName) {
-        Optional<Category> possibleCategory = Category.getByName(possibleCategoryName);
-
-        return possibleCategory.map(category -> ResponseEntity.ok(findProductsByCategoryUseCase.execute(category)))
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/product")
+    public ResponseEntity<List<SimpleProductView>> findBy(@Valid @RequestParam("categoryName") String categoryName) {
+       return Category.getByName(categoryName)
+               .map(category -> ResponseEntity.ok(findProductsByCategoryUseCase.execute(category)))
+               .orElse(ResponseEntity.notFound().build());
     }
 
     @Transactional
     @PostMapping("/product")
-    public ResponseEntity save(@Valid @RequestBody NewProductForm form) {
-        Optional<SimpleProductView> possibleView = createProductUseCase.execute(form);
-
-        return possibleView.map(view -> ResponseEntity.status(HttpStatus.CREATED).body(view)).orElse(ResponseEntity.badRequest().build());
+    public ResponseEntity<SimpleProductView> save(@Valid @RequestBody NewProductForm form) {
+       return createProductUseCase.execute(form)
+               .map(view -> ResponseEntity.status(HttpStatus.CREATED).body(view))
+               .orElse(ResponseEntity.badRequest().build());
     }
 
     @Transactional
     @PutMapping("/product")
-    public ResponseEntity update(@Valid @RequestBody UpdateProductForm form) {
-        Optional<SimpleProductView> possibleUpdatedProduct = updateProductUseCase.execute(form);
-
-        return possibleUpdatedProduct.map(ResponseEntity::ok)
+    public ResponseEntity<?> update(@Valid @RequestBody UpdateProductForm form) {
+        return updateProductUseCase.execute(form)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.badRequest().build());
     }
 
     @Transactional
     @DeleteMapping("/product/{id}")
-    public ResponseEntity deleteById(@RequestParam Long id) {
+    public ResponseEntity<?> deleteById(@RequestParam Long id) {
         boolean hasItemAssociated = this.productGateway.hasItems(id);
         if (hasItemAssociated) return ResponseEntity.badRequest().body("O produto não pode ser deletado pois tem item associado!");
 
@@ -73,6 +71,4 @@ public class ProductController implements ProductControllerDocs {
 
         return hasBeenDeleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
-
-
 }

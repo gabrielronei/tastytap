@@ -1,7 +1,6 @@
 package br.com.fiap.tastytap.application.order.retrieve;
 
 import br.com.fiap.tastytap.application.order.OrderGateway;
-import br.com.fiap.tastytap.application.order.create.SimpleOrderView;
 
 import java.util.List;
 

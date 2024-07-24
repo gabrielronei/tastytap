@@ -1,7 +1,7 @@
 package br.com.fiap.tastytap.presentation.order;
 
 import br.com.fiap.tastytap.application.order.create.CreateOrderUseCase;
-import br.com.fiap.tastytap.application.order.create.SimpleOrderView;
+import br.com.fiap.tastytap.application.order.create.NewOrderView;
 import br.com.fiap.tastytap.application.order.retrieve.FindOrdersUseCase;
 import br.com.fiap.tastytap.application.user.UserGateway;
 import jakarta.validation.Valid;
@@ -33,13 +33,13 @@ public class OrderController implements OrderControllerDocs {
     }
 
     @GetMapping("/order")
-    public ResponseEntity findAll() {
+    public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(findOrdersUseCase.execute());
     }
 
     @PostMapping("/order")
-    public ResponseEntity addOrder(@Valid @RequestBody NewOrderForm form) {
-        Optional<SimpleOrderView> possibleOrder = this.createOrderUseCase.execute(form);
+    public ResponseEntity<?> addOrder(@Valid @RequestBody NewOrderForm form) {
+        Optional<NewOrderView> possibleOrder = this.createOrderUseCase.execute(form);
 
         return possibleOrder.map(order -> ResponseEntity.status(HttpStatus.CREATED).body(order))
                 .orElse(ResponseEntity.badRequest().build());

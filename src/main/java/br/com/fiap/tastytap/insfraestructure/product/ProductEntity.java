@@ -28,12 +28,13 @@ public class ProductEntity {
     @URL
     @NotBlank
     @Column(length = 500)
-    private String imageURL;
+    private String imageUrl;
 
     @DecimalMin(value = "1")
     private BigDecimal price;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @PastOrPresent
@@ -50,7 +51,7 @@ public class ProductEntity {
         this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();
-        this.imageURL = product.getImageURL();
+        this.imageUrl = product.getImageUrl();
         this.price = product.getPrice();
         this.category = product.getCategory();
         this.createdAt = product.getCreatedAt();
@@ -69,8 +70,8 @@ public class ProductEntity {
         return description;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public BigDecimal getPrice() {
@@ -91,7 +92,7 @@ public class ProductEntity {
     }
 
     public Product toDomain() {
-        Product product = new Product(this.id, this.name, this.description, this.imageURL, this.price, this.category, this.createdAt);
+        Product product = new Product(this.id, this.name, this.description, this.imageUrl, this.price, this.category, this.createdAt);
         product.setUpdatedAt(this.updatedAt);
         return product;
     }

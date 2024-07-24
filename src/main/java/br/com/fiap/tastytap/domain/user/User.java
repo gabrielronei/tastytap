@@ -1,6 +1,8 @@
 package br.com.fiap.tastytap.domain.user;
 
 import br.com.fiap.tastytap.utils.ValidationUtils;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +13,8 @@ public class User {
     private String email;
     private String cpf;
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Enumerated(EnumType.STRING)
     private Role role = Role.REGULAR;
 
     public User(String name, String email, String cpf) {
