@@ -7,7 +7,7 @@ public enum Category {
     SANDWICH("Sanduiche"),
     SIDE_DISH("Acompanhamento"),
     DRINK("Bebida"),
-    DESERT("Sobremesa");
+    DESSERT("Sobremesa");
 
     private final String name;
 
