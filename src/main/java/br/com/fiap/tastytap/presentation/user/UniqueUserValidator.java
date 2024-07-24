@@ -32,11 +32,9 @@ public class UniqueUserValidator implements Validator {
             return;
         }
 
-        possibleUser = userRepository.findByCpf(newUserForm.getCPF());
+        possibleUser = userRepository.findByCpf(newUserForm.getCPF().getCPFWithoutPonctuation());
         if (possibleUser.isPresent()) {
             errors.reject("", "já existe um usuario com este cpf!");
         }
-
-
     }
 }

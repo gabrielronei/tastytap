@@ -1,6 +1,7 @@
 package br.com.fiap.tastytap.insfraestructure.user;
 
 import br.com.fiap.tastytap.application.user.UserGateway;
+import br.com.fiap.tastytap.domain.user.CPF;
 import br.com.fiap.tastytap.domain.user.User;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,8 @@ public final class DefaultUserGateway implements UserGateway {
     }
 
     @Override
-    public Optional<User> findByCPF(String cpf) {
-        return this.userRepository.findByCpf(cpf).map(UserEntity::toDomain);
+    public Optional<User> findByCPF(CPF cpf) {
+        return this.userRepository.findByCpf(cpf.getCPFWithoutPonctuation()).map(UserEntity::toDomain);
     }
 
     @Override

@@ -7,7 +7,7 @@ public enum Category {
     SANDWICH("Sanduiche"),
     SIDE_DISH("Acompanhamento"),
     DRINK("Bebida"),
-    DESERT("Sobremesa");
+    DESSERT("Sobremesa");
 
     private final String name;
 
@@ -21,7 +21,7 @@ public enum Category {
 
 
     public static Optional<Category> getByName(String name) {
-        return Stream.of(Category.values()).filter(x -> x.name.equalsIgnoreCase(name) || x.name().equalsIgnoreCase(name))
+        return Stream.of(Category.values()).filter(it -> it.name.equalsIgnoreCase(name) || it.name().equalsIgnoreCase(name))
                 .findFirst();
 
     }

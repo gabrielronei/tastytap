@@ -38,8 +38,8 @@ public class ProductController implements ProductControllerDocs {
         this.productGateway = productGateway;
     }
 
-    @GetMapping("/product")
-    public ResponseEntity<List<SimpleProductView>> findBy(@Valid @RequestParam("categoryName") String categoryName) {
+    @GetMapping("/product/{categoryName}")
+    public ResponseEntity<List<SimpleProductView>> findBy(@Valid @PathVariable("categoryName") String categoryName) {
        return Category.getByName(categoryName)
                .map(category -> ResponseEntity.ok(findProductsByCategoryUseCase.execute(category)))
                .orElse(ResponseEntity.notFound().build());
@@ -63,7 +63,7 @@ public class ProductController implements ProductControllerDocs {
 
     @Transactional
     @DeleteMapping("/product/{id}")
-    public ResponseEntity<?> deleteById(@RequestParam Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
         boolean hasItemAssociated = this.productGateway.hasItems(id);
         if (hasItemAssociated) return ResponseEntity.badRequest().body("O produto não pode ser deletado pois tem item associado!");
 

@@ -9,7 +9,7 @@ public class User {
     private Long id;
     private String name;
     private String email;
-    private String cpf;
+    private CPF cpf;
     private LocalDateTime createdAt = LocalDateTime.now();
     private Role role = Role.REGULAR;
 
@@ -20,7 +20,7 @@ public class User {
 
         this.name = name;
         this.email = email;
-        this.cpf = cpf;
+        this.cpf = new CPF(cpf);
     }
 
     public User(Long id, String name, String email, String cpf, LocalDateTime createdAt, Role role) {
@@ -47,7 +47,7 @@ public class User {
     }
 
     public String getCpf() {
-        return cpf;
+        return cpf.getCPFWithoutPonctuation();
     }
 
     public LocalDateTime getCreatedAt() {
