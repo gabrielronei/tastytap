@@ -39,7 +39,7 @@ public class ProductController implements ProductControllerDocs {
     }
 
     @GetMapping("/product/{categoryName}")
-    public ResponseEntity findBy(@Valid @RequestParam("categoryName") String possibleCategoryName) {
+    public ResponseEntity findBy(@Valid @PathVariable("categoryName") String possibleCategoryName) {
         Optional<Category> possibleCategory = Category.getByName(possibleCategoryName);
 
         return possibleCategory.map(category -> ResponseEntity.ok(findProductsByCategoryUseCase.execute(category)))

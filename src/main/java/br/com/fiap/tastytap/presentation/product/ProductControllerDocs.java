@@ -11,7 +11,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ interface ProductControllerDocs {
             @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = List.class), mediaType = "application/json")}),
             @ApiResponse(responseCode = "404", description = "A categoria fornecida não foi encontrada", content = {@Content(schema = @Schema())})
     })
-    ResponseEntity findBy(@Valid @RequestParam("categoryName") String possibleCategoryName);
+    ResponseEntity findBy(@Valid @PathVariable("categoryName") String possibleCategoryName);
 
     @Operation(
             summary = "Cadastra um novo produto",
