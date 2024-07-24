@@ -1,31 +1,43 @@
-package br.com.fiap.tastytap.application.order.create;
+package br.com.fiap.tastytap.application.order.retrieve;
 
-import br.com.fiap.tastytap.application.user.SimpleUserView;
 import br.com.fiap.tastytap.domain.order.Order;
 import br.com.fiap.tastytap.domain.order.OrderItem;
+import br.com.fiap.tastytap.domain.user.User;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public final class SimpleOrderView {
 
-    private final String orderNumber;
-    private final SimpleUserView user;
+    private final Long number;
+    private final String status;
+    private final String paymentStatus;
+    private final String user;
     private final BigDecimal totalPrice;
     private final List<SimpleOrderItemView> items;
 
     public SimpleOrderView(Order order) {
-        this.orderNumber = "#%s".formatted(order.getId());
-        this.user = order.getPossibleUser().map(SimpleUserView::new).orElse(null);
+        this.number = order.getNumber();
+        this.status = order.getStatus().name();
+        this.paymentStatus = order.getPaymentStatus().name();
+        this.user = order.getPossibleUser().map(User::getCpf).orElse(null);
         this.totalPrice = order.getTotal();
         this.items = order.getOrderItems().stream().map(SimpleOrderItemView::new).toList();
     }
 
-    public String getOrderNumber() {
-        return orderNumber;
+    public Long getNumber() {
+        return number;
     }
 
-    public SimpleUserView getUser() {
+    public String getStatus() {
+        return status;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public String getUser() {
         return user;
     }
 

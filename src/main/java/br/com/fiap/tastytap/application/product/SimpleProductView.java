@@ -9,7 +9,7 @@ public final class SimpleProductView {
     private final Long id;
     private final String name;
     private final String description;
-    private final String imageURL;
+    private final String imageUrl;
     private final String createdAt;
     private final String updatedAt;
     private final String category;
@@ -19,7 +19,7 @@ public final class SimpleProductView {
         this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();
-        this.imageURL = product.getImageURL();
+        this.imageUrl = product.getImageUrl();
         this.createdAt = product.getFormattedCreatedAt();
         this.updatedAt = product.getFormattedUpdatedAt();
         this.category = product.getCategoryDescription();
@@ -38,8 +38,8 @@ public final class SimpleProductView {
         return description;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public String getCreatedAt() {

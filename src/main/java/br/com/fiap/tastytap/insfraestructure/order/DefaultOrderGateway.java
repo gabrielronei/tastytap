@@ -5,6 +5,7 @@ import br.com.fiap.tastytap.domain.order.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public final class DefaultOrderGateway implements OrderGateway {
@@ -23,6 +24,11 @@ public final class DefaultOrderGateway implements OrderGateway {
 
     @Override
     public List<Order> findAll() {
-        return this.orderRepository.findAll().stream().map(OrderEntity::toDomain).toList();
+        return this.orderRepository.findAllOrdersOrderByStatus().stream().map(OrderEntity::toDomain).toList();
+    }
+
+    @Override
+    public Optional<Order> findByNumber(Long number) {
+        return this.orderRepository.findByNumber(number).map(OrderEntity::toDomain);
     }
 }

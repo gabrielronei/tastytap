@@ -12,16 +12,16 @@ public class Product {
     private Long id;
     private String name;
     private String description;
-    private String imageURL;
+    private String imageUrl;
     private BigDecimal price;
     private Category category;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt;
 
-    public Product(String name, String description, String imageURL, BigDecimal price, Category category) {
+    public Product(String name, String description, String imageUrl, BigDecimal price, Category category) {
         ValidationUtils.notBlank(name, "Product name cannot be blank");
-        ValidationUtils.notBlank(description, "Description name cannot be blank");
-        ValidationUtils.notBlank(imageURL, "Description name cannot be blank");
+        ValidationUtils.notBlank(description, "Product description name cannot be blank");
+        ValidationUtils.notBlank(imageUrl, "Product imageUrl name cannot be blank");
         ValidationUtils.notNull(price, "Product price cannot be null");
         ValidationUtils.isTrue(price.compareTo(BigDecimal.ONE) >= 0, "Product price should be positive");
         ValidationUtils.notNull(category, "Product category cannot be null");
@@ -30,11 +30,11 @@ public class Product {
         this.description = description;
         this.price = price;
         this.category = category;
-        this.imageURL = imageURL;
+        this.imageUrl = imageUrl;
     }
 
-    public Product(Long id, String name, String description, String imageURL, BigDecimal price, Category category, LocalDateTime createdAt) {
-        this(name, description, imageURL, price, category);
+    public Product(Long id, String name, String description, String imageUrl, BigDecimal price, Category category, LocalDateTime createdAt) {
+        this(name, description, imageUrl, price, category);
 
         ValidationUtils.notNull(id, "id price cannot be null");
         ValidationUtils.notNull(createdAt, "createdAt cannot be null");
@@ -54,8 +54,8 @@ public class Product {
         return description;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public Category getCategory() {
@@ -90,7 +90,7 @@ public class Product {
         this.id = updateProduct.getId();
         this.description = updateProduct.getDescription();
         this.price = updateProduct.getPrice();
-        this.imageURL = updateProduct.getImageURL();
+        this.imageUrl = updateProduct.getImageURL();
         this.updatedAt = LocalDateTime.now();
     }
 

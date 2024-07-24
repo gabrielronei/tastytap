@@ -1,6 +1,7 @@
 package br.com.fiap.tastytap.presentation.order;
 
-import br.com.fiap.tastytap.application.order.create.SimpleOrderView;
+import br.com.fiap.tastytap.application.order.create.NewOrderView;
+import br.com.fiap.tastytap.application.order.retrieve.SimpleOrderView;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.*;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -27,7 +28,7 @@ interface OrderControllerDocs {
             summary = "Cria um novo pedido",
             description = "Faz o cadastro de um novo pedido e retorna o pedido em caso de sucesso")
     @ApiResponses({
-            @ApiResponse(responseCode = "201", content = {@Content(schema = @Schema(implementation = SimpleOrderView.class), mediaType = "application/json")}),
+            @ApiResponse(responseCode = "201", content = {@Content(schema = @Schema(implementation = NewOrderView.class), mediaType = "application/json")}),
             @ApiResponse(responseCode = "400", description = "Dados inválidos ou incorretos", content = {@Content(schema = @Schema())}),
             @ApiResponse(responseCode = "500", description = "Erro interno do sistema", content = {@Content(schema = @Schema())})
     })
