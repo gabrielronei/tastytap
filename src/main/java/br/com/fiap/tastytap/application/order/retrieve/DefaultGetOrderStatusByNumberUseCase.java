@@ -4,11 +4,11 @@ import br.com.fiap.tastytap.application.order.OrderGateway;
 
 import java.util.Optional;
 
-public class DefaultGetOrderStatusByNumber extends GetOrderStatusByNumber {
+public class DefaultGetOrderStatusByNumberUseCase extends GetOrderStatusByNumberUseCase {
 
     private final OrderGateway orderGateway;
 
-    public DefaultGetOrderStatusByNumber(OrderGateway orderGateway) {
+    public DefaultGetOrderStatusByNumberUseCase(OrderGateway orderGateway) {
         this.orderGateway = orderGateway;
     }
 
