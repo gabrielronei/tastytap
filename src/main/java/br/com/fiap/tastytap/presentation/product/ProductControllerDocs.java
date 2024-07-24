@@ -11,8 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,5 +54,5 @@ interface ProductControllerDocs {
             @ApiResponse(responseCode = "200", description = "Produto excluído com sucesso", content = {@Content(schema = @Schema())}),
             @ApiResponse(responseCode = "404", description = "O Id do produto fornecido não foi encontrado", content = {@Content(schema = @Schema())}),
     })
-    ResponseEntity deleteById(@RequestParam Long id);
+    ResponseEntity deleteById(@PathVariable Long id);
 }

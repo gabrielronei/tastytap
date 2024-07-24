@@ -65,7 +65,7 @@ public class ProductController implements ProductControllerDocs {
 
     @Transactional
     @DeleteMapping("/product/{id}")
-    public ResponseEntity deleteById(@RequestParam Long id) {
+    public ResponseEntity deleteById(@PathVariable Long id) {
         boolean hasItemAssociated = this.productGateway.hasItems(id);
         if (hasItemAssociated) return ResponseEntity.badRequest().body("O produto não pode ser deletado pois tem item associado!");
 
