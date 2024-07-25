@@ -4,4 +4,8 @@ public enum PaymentStatus {
     PENDING,
     APPROVED,
     REJECTED;
+
+    boolean isPaid() {
+        return APPROVED == this;
+    }
 }

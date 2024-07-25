@@ -1,4 +1,4 @@
-package br.com.fiap.tastytap.application.order.update;
+package br.com.fiap.tastytap.application.order.update.payment;
 
 import br.com.fiap.tastytap.application.order.OrderGateway;
 import br.com.fiap.tastytap.domain.order.Order;

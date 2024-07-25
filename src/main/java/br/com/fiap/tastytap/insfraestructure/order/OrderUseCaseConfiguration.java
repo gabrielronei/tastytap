@@ -3,7 +3,9 @@ package br.com.fiap.tastytap.insfraestructure.order;
 import br.com.fiap.tastytap.application.order.create.CreateOrderUseCase;
 import br.com.fiap.tastytap.application.order.create.DefaultCreateOrderUseCase;
 import br.com.fiap.tastytap.application.order.retrieve.*;
-import br.com.fiap.tastytap.application.order.update.DefaultUpdateOrderPaymentStatusUseCase;
+import br.com.fiap.tastytap.application.order.update.DefaultUpdateOrderStatusUseCaseImpl;
+import br.com.fiap.tastytap.application.order.update.UpdateOrderStatusUseCase;
+import br.com.fiap.tastytap.application.order.update.payment.DefaultUpdateOrderPaymentStatusUseCase;
 import br.com.fiap.tastytap.insfraestructure.payment.DefaultPaymentGateway;
 import br.com.fiap.tastytap.insfraestructure.product.DefaultProductGateway;
 import br.com.fiap.tastytap.insfraestructure.user.DefaultUserGateway;
@@ -46,5 +48,10 @@ public class OrderUseCaseConfiguration {
     @Bean
     public GetOrderStatusByNumberUseCase getOrderStatusByNumberUseCase() {
         return new DefaultGetOrderStatusByNumberUseCase(defaultOrderGateway);
+    }
+
+    @Bean
+    public UpdateOrderStatusUseCase updateOrderStatusUseCase() {
+        return new DefaultUpdateOrderStatusUseCaseImpl(defaultOrderGateway);
     }
 }

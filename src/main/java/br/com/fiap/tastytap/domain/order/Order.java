@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import static br.com.fiap.tastytap.domain.order.PaymentStatus.PENDING;
+import static br.com.fiap.tastytap.domain.order.Status.RECEIVED;
 
 public class Order {
 
@@ -17,7 +18,7 @@ public class Order {
     private List<OrderItem> items = new ArrayList<>();
     private BigDecimal total;
     private LocalDateTime createdAt = LocalDateTime.now();
-    private Status status = Status.RECEIVED;
+    private Status status = RECEIVED;
     private Long number = NumberGenerator.getNext();
     private Long transactionId;
     private PaymentStatus paymentStatus = PENDING;
@@ -50,10 +51,6 @@ public class Order {
         this.transactionId = transactionId;
         this.paymentStatus = paymentStatus;
         this.qrCodeUrl = qrCodeUrl;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Long getId() {
@@ -96,11 +93,23 @@ public class Order {
         return qrCodeUrl;
     }
 
+    public void updateStatus() {
+        if (!this.paymentStatus.isPaid()) throw new RuntimeException("You need to pay this order first");
+        if (this.status.hasFinished()) return;
+
+
+        this.status = status.next();
+    }
+
     public void update(Long transactionId, String qrCodeUrl) {
         ValidationUtils.notNull(transactionId, "transactionId cannot be null");
         ValidationUtils.notNull(qrCodeUrl, "qrCodeUrl cannot be null");
         this.transactionId = transactionId;
         this.qrCodeUrl = qrCodeUrl;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setPaymentStatus(PaymentStatus paymentStatus) {
@@ -109,6 +118,6 @@ public class Order {
     }
 
     public boolean isValidToPay() {
-        return Status.RECEIVED.equals(status) && paymentStatus.equals(PENDING);
+        return RECEIVED.equals(status) && PENDING.equals(paymentStatus);
     }
 }
