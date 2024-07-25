@@ -10,7 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@Tag(name = "Payment Webhook Controller", description = "Weebhook de pagamento")
+@Tag(name = "Payment Webhook Controller", description = "Webhook de pagamento")
 public interface PaymentWebhookControllerDocs {
 
     @Operation(
