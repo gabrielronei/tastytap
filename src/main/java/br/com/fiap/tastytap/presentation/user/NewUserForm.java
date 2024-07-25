@@ -2,6 +2,7 @@ package br.com.fiap.tastytap.presentation.user;
 
 import br.com.fiap.tastytap.application.user.create.NewUserCommand;
 import br.com.fiap.tastytap.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
@@ -35,9 +36,13 @@ public class NewUserForm implements NewUserCommand {
         return this.email;
     }
 
-    @Override
-    public br.com.fiap.tastytap.domain.user.CPF getCPF() {
-        return new br.com.fiap.tastytap.domain.user.CPF(this.cpf);
+    @JsonIgnore
+    public br.com.fiap.tastytap.domain.user.CPF getDomainCPF() {
+        return new br.com.fiap.tastytap.domain.user.CPF(getCPF());
+    }
+
+    public String getCPF() {
+        return this.cpf;
     }
 
     @Override

@@ -7,6 +7,6 @@ public interface NewUserCommand {
 
     String getName();
     String getEmail();
-    CPF getCPF();
+    CPF getDomainCPF();
     User toUser();
 }
