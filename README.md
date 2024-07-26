@@ -53,4 +53,15 @@ A instalação é bem simples, siga as seguintes etapas:
    http://localhost:8080/
    ```
 
+## Por dentro de nossa arquitetura
+Basicamente a nossa divisão dos pacotes funciona da seguinte maneira:
+
+- **Domain**: este é o core da nossa aplicação, lá se encontram nossos objetos de negócio que encapsulam as regras centrais de nosso sistema.
+- **Application**: aqui é onde se encontram nossos casos de uso, que definem as logicas especificas de nosso negócio, essa camada orquestra o fluxo de dados entre as entidades e outras camadas externas.
+- **Utils**: é onde se encontram alguns recursos uteis para aplicação no geral, ele consegue centralizar algumas lógicas/validações/formatações, para que mantenham-se as assinaturas independente da implementação.
+- **Infraestructure**: aqui estão nossas pontes com a camada de aplicação em conjunto com o framework, é onde eles se juntam.
+- **Presentation**: Onde ficam nossos endpoints, a comunicação com nossa camada mais externa, que no caso desse projeto, é somente web.
+
+
+
 <p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
