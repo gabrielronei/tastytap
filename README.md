@@ -62,6 +62,7 @@ Basicamente a nossa divisão dos pacotes funciona da seguinte maneira:
 - **Infraestructure**: aqui estão nossas pontes com a camada de aplicação em conjunto com o framework, é onde eles se juntam.
 - **Presentation**: Onde ficam nossos endpoints, a comunicação com nossa camada mais externa, que no caso desse projeto, é somente web.
 
+Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
 
 
 <p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
