@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "6ef63033-679d-4c01-8331-9f7da4a3b092",
+		"name": "tastytap - fiap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8028083"
+	},
+	"item": [
+		{
+			"name": "1 - user - create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Saul Hudson\",\n  \"email\": \"saul.hudson@gmail.com\",\n  \"cpf\": \"285.977.970-10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/user",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 - user - findByCPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/user/285.977.970-10",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"285.977.970-10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - product - create - sandwich",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Universitario\",\n  \"description\": \"Pão de brioche selado na manteiga, hambúrguer artesanal 160g, queijo cheddar, alface, tomate e molho john's\",\n  \"imageURL\": \"https://assets.unileversolutions.com/recipes-v2/106684.jpg\",\n  \"category\": \"SANDWICH\",\n  \"price\": 33.90\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/product",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - product - create - sandwich para deletar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Produto para deletar e atualizar\",\n  \"description\": \"XPTOPTOPTO\",\n  \"imageURL\": \"https://assets.unileversolutions.com/recipes-v2/106684.jpg\",\n  \"category\": \"SIDE_DISH\",\n  \"price\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/product",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - product - create - drink",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Coca-Cola Original 350ml\",\n  \"description\": \"Lata 350ml\",\n  \"imageURL\": \"https://hiperideal.vtexassets.com/arquivos/ids/197362/55723-4.jpg\",\n  \"category\": \"DRINK\",\n  \"price\": 7.90\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/product",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - product - create - dessert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Pudim cremoso individual\",\n  \"description\": \"Pudim cremoso e sem furinho\",\n  \"imageURL\": \"https://revistamenu.com.br/wp-content/uploads/sites/24/2020/05/diadopudim-1.jpg\",\n  \"category\": \"DESSERT\",\n  \"price\": 13.90\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/product",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 - product - update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"{{PRODUCT_ID}}\",\n  \"description\": \"descricão novissima\",\n  \"imageURL\": \"https://assets.unileversolutions.com/recipes-v2/106684.jpg\",\n  \"price\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/product",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 - product - findByCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/product/SIDE_DISH",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"product",
+						"SIDE_DISH"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 - product - delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/product/{{PRODUCT_ID}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"product",
+						"{{PRODUCT_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7 - order - create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cpf\": \"285.977.970-10\",\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    },\n    {\n      \"productId\": 3,\n      \"quantity\": 2\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/order",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7 - order - create order without user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/order",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8 - order - findAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/order",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9 - payment - chama o webhook que seria chamado pelo gateway",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"transactionId\": \"{{TRANSACTION_ID}}\",\n  \"status\": \"APPROVED\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/payment/provider/webhook",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"payment",
+						"provider",
+						"webhook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10 - order - checa status pelo numero do pedido",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/order/{{ORDER_NUMBER}}/status",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"order",
+						"{{ORDER_NUMBER}}",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11 - order - atualiza o status do pedido",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/order/{{ORDER_NUMBER}}/status",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"order",
+						"{{ORDER_NUMBER}}",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "ORDER_NUMBER",
+			"value": "1722262656",
+			"type": "string"
+		},
+		{
+			"key": "TRANSACTION_ID",
+			"value": "1722262657",
+			"type": "string"
+		},
+		{
+			"key": "PRODUCT_ID",
+			"value": "2",
+			"type": "string"
+		}
+	]
+}
