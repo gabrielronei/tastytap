@@ -5,6 +5,7 @@ import br.com.fiap.tastytap.application.order.create.NewOrderView;
 import br.com.fiap.tastytap.application.order.retrieve.FindOrdersUseCase;
 import br.com.fiap.tastytap.application.order.retrieve.GetOrderStatusByNumberUseCase;
 import br.com.fiap.tastytap.application.order.update.UpdateOrderStatusUseCase;
+import br.com.fiap.tastytap.application.product.ProductGateway;
 import br.com.fiap.tastytap.application.user.UserGateway;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -19,17 +20,20 @@ import java.util.Optional;
 public class OrderController implements OrderControllerDocs {
 
     private final UserGateway userGateway;
+    private final ProductGateway productGateway;
     private final CreateOrderUseCase createOrderUseCase;
     private final FindOrdersUseCase findOrdersUseCase;
     private final UpdateOrderStatusUseCase updateOrderStatusUseCase;
     private final GetOrderStatusByNumberUseCase getOrderStatusByNumberUseCase;
 
     public OrderController(UserGateway userGateway,
+                           ProductGateway productGateway,
                            CreateOrderUseCase createOrderUseCase,
                            FindOrdersUseCase findOrdersUseCase,
                            UpdateOrderStatusUseCase updateOrderStatusUseCase,
                            GetOrderStatusByNumberUseCase getOrderStatusByNumberUseCase) {
         this.userGateway = userGateway;
+        this.productGateway = productGateway;
         this.createOrderUseCase = createOrderUseCase;
         this.findOrdersUseCase = findOrdersUseCase;
         this.updateOrderStatusUseCase = updateOrderStatusUseCase;
@@ -38,7 +42,7 @@ public class OrderController implements OrderControllerDocs {
 
     @InitBinder("newOrderForm")
     public void init(WebDataBinder binder) {
-        binder.addValidators(new ValidateCustomerIfPresent(userGateway));
+        binder.addValidators(new ValidateCustomerIfPresent(userGateway), new ProductsValidator(productGateway));
     }
 
     @GetMapping("/order")

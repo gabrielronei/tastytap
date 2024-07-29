@@ -35,6 +35,12 @@ public final class DefaultCreateOrderUseCase extends CreateOrderUseCase {
     public Optional<NewOrderView> execute(NewOrderCommand newOrderCommand) {
         List<Long> itemsIds = newOrderCommand.getItems().stream().map(NewItemOrderCommand::getProductId).toList();
         List<Product> products = productGateway.findAllByIdIn(itemsIds);
+
+        List<Long> missingIds = findMissingIds(products, itemsIds);
+        if (!missingIds.isEmpty()) {
+            throw new RuntimeException("IDs não encontrados no banco: " + missingIds);
+        }
+
         Map<Long, Integer> productsAndQuantity = newOrderCommand.getItems().stream()
                 .collect(Collectors.toMap(NewItemOrderCommand::getProductId, NewItemOrderCommand::getQuantity));
 
@@ -52,5 +58,17 @@ public final class DefaultCreateOrderUseCase extends CreateOrderUseCase {
         Order persistedOrder = this.orderGateway.persist(order);
 
         return persistedOrder != null ? Optional.of(new NewOrderView(persistedOrder)) : Optional.empty();
+    }
+
+    private List<Long> findMissingIds(List<Product> products, List<Long> itemsIds) {
+        if (products.size() != itemsIds.size()) {
+            Set<Long> idsFromFoundedProducts = products.stream().map(Product::getId).collect(Collectors.toSet());
+
+            return itemsIds.stream()
+                    .filter(id -> !idsFromFoundedProducts.contains(id))
+                    .toList();
+        }
+
+        return Collections.emptyList();
     }
 }
