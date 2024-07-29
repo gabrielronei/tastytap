@@ -54,15 +54,16 @@ A instalação é bem simples, siga as seguintes etapas:
    ```
 
 ## Por dentro de nossa arquitetura
-Basicamente a nossa divisão dos pacotes funciona da seguinte maneira:
+Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
+![TECH CHALLENGE 2 - ARQUITETURA - FIAP drawio (1)](https://github.com/user-attachments/assets/54f3f0c4-5ab7-47a2-a9ac-980a0072f6d6)
 
+Basicamente a nossa divisão dos pacotes funciona da seguinte maneira:
 - **Domain**: este é o core da nossa aplicação, lá se encontram nossos objetos de negócio que encapsulam as regras centrais de nosso sistema.
 - **Application**: aqui é onde se encontram nossos casos de uso, que definem as logicas especificas de nosso negócio, essa camada orquestra o fluxo de dados entre as entidades e outras camadas externas.
 - **Utils**: é onde se encontram alguns recursos uteis para aplicação no geral, ele consegue centralizar algumas lógicas/validações/formatações, para que mantenham-se as assinaturas independente da implementação.
 - **Infraestructure**: aqui estão nossas pontes com a camada de aplicação em conjunto com o framework, é onde eles se juntam.
 - **Presentation**: Onde ficam nossos endpoints, a comunicação com nossa camada mais externa, que no caso desse projeto, é somente web.
 
-Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
 
 
 <p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
