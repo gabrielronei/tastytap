@@ -52,6 +52,197 @@ A instalação é bem simples, siga as seguintes etapas:
    ```
    http://localhost:8080/
    ```
+   
+## Exemplos de requests
+
+As requests podem ser feitas na seguinte ordem:
+
+<details>
+  <summary>1. Criar usuário (opcionalmente): </summary>
+
+  ```json
+// GET /user
+{
+  "name": "Saul Hudson",
+  "email": "saul.hudson@gmail.com",
+  "cpf": "285.977.970-10"
+}
+```
+</details>
+
+<details>
+  <summary>2. Buscar usuário por CPF (opcionalmente): </summary>
+
+  ```json
+// GET /user/285.977.970-10
+```
+</details>
+
+<details>
+  <summary>3. Criar produto de tipo lanche: </summary>
+
+  ```json
+// POST /product
+{
+  "name": "Universitario",
+  "description": "Pão de brioche selado na manteiga, hambúrguer artesanal 160g, queijo cheddar, alface, tomate e molho john's",
+  "imageURL": "https://assets.unileversolutions.com/recipes-v2/106684.jpg",
+  "category": "SANDWICH",
+  "price": 33.90
+}
+```
+</details>
+
+<details>
+  <summary>4. Criar produto de tipo lanche para atualizar e deletar: </summary>
+
+  ```json
+// POST /product
+{
+  "name": "Produto para deletar e atualizar",
+  "description": "XPTOPTOPTO",
+  "imageURL": "https://assets.unileversolutions.com/recipes-v2/106684.jpg",
+  "category": "SIDE_DISH",
+  "price": 10
+}
+```
+</details>
+
+<details>
+  <summary>5. Criar produto de tipo bebida: </summary>
+
+  ```json
+// POST /product
+{
+  "name": "Coca-Cola Original 350ml",
+  "description": "Lata 350ml",
+  "imageURL": "https://hiperideal.vtexassets.com/arquivos/ids/197362/55723-4.jpg",
+  "category": "DRINK",
+  "price": 7.90
+}
+```
+</details>
+
+<details>
+  <summary>6. Criar produto de tipo sobremesa: </summary>
+
+  ```json
+// POST /product
+{
+  "name": "Pudim cremoso individual",
+  "description": "Pudim cremoso e sem furinho",
+  "imageURL": "https://revistamenu.com.br/wp-content/uploads/sites/24/2020/05/diadopudim-1.jpg",
+  "category": "DESSERT",
+  "price": 13.90
+}
+```
+</details>
+
+<details>
+  <summary>7. Atualizar produto: </summary>
+
+  ```json
+// PUT /product
+{
+  "id": 2,
+  "description": "descricão novissima",
+  "imageURL": "https://assets.unileversolutions.com/recipes-v2/106684.jpg",
+  "price": 1
+}
+```
+</details>
+
+<details>
+  <summary>8. Buscar por categoria: </summary>
+
+  ```json
+// GET /product/SIDE_DISH
+```
+</details>
+
+<details>
+  <summary>9. Deletar por id: </summary>
+
+  ```json
+// DELETE /product/2
+```
+</details>
+
+<details>
+  <summary>10. Criar um pedido(com usuario): </summary>
+
+  ```json
+// POST /order
+
+{
+  "cpf": "285.977.970-10",
+  "items": [
+    {
+      "productId": 1,
+      "quantity": 2
+    },
+    {
+      "productId": 3,
+      "quantity": 2
+    }
+  ]
+}
+```
+</details>
+
+<details>
+  <summary>11. Criar um pedido(sem usuario): </summary>
+
+  ```json
+// POST /order
+
+{
+  "items": [
+    {
+      "productId": 1,
+      "quantity": 2
+    }
+  ]
+}
+```
+</details>
+
+<details>
+  <summary>12. Busca todos os pedidos: </summary>
+
+  ```json
+// GET /order
+```
+</details>
+
+<details>
+  <summary>13. Chama webhook que seria chamado pelo gateway: </summary>
+
+  ```json
+// POST /payment/provider/webhook
+{
+  "transactionId": "{{TRANSACTION_ID}}",
+  "status": "APPROVED"
+}
+```
+</details>
+
+<details>
+  <summary>14. Checa status pelo numero do pedido: </summary>
+
+  ```json
+// GET /order/{{ORDER_NUMBER}}/status
+```
+</details>
+
+<details>
+  <summary>15. Atualiza status do pedido: </summary>
+
+  ```json
+// GET /order/{{ORDER_NUMBER}}/status
+```
+</details>
+
 
 ## Por dentro de nossa arquitetura
 Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
