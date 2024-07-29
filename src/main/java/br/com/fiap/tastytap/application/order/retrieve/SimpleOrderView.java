@@ -10,6 +10,7 @@ import java.util.List;
 public final class SimpleOrderView {
 
     private final Long number;
+    private final Long transactionId;
     private final String status;
     private final String paymentStatus;
     private final String user;
@@ -18,6 +19,7 @@ public final class SimpleOrderView {
 
     public SimpleOrderView(Order order) {
         this.number = order.getNumber();
+        this.transactionId = order.getTransactionId();
         this.status = order.getStatus().name();
         this.paymentStatus = order.getPaymentStatus().name();
         this.user = order.getPossibleUser().map(User::getCpf).orElse(null);
@@ -27,6 +29,10 @@ public final class SimpleOrderView {
 
     public Long getNumber() {
         return number;
+    }
+
+    public Long getTransactionId() {
+        return transactionId;
     }
 
     public String getStatus() {
