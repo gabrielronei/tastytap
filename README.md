@@ -25,6 +25,8 @@ Projeto atualizado para a segunda entrega da pós graduação em [Software Archi
 
 Link do miro: https://miro.com/app/board/uXjVKTJ4mvk=/?share_link_id=556895060297
 
+Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
+
 
 ## Começando
 
@@ -280,9 +282,8 @@ Basicamente a nossa divisão dos pacotes funciona da seguinte maneira:
 - **Infraestructure**: aqui estão nossas pontes com a camada de aplicação em conjunto com o framework, é onde eles se juntam.
 - **Presentation**: Onde ficam nossos endpoints, a comunicação com nossa camada mais externa, que no caso desse projeto, é somente web.
 
-
-Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
-![TECH CHALLENGE 2 - ARQUITETURA - FIAP drawio (1)](https://github.com/user-attachments/assets/54f3f0c4-5ab7-47a2-a9ac-980a0072f6d6)
-
+### Arquitetura da infraestrutura
+Temos nossa infraestrutura com um LoadBalancer na aplicação principal(tastytap), para suportar grande volume de requisições simultaneas, onde o minimo são 2 máquinas e podendo escalar até 6.
+![image](https://github.com/user-attachments/assets/fbacff87-69c8-40de-814e-c1e037b7f61f)
 
 <p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
