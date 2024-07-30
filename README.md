@@ -4,9 +4,12 @@
 *** Template baseado em https://github.com/othneildrew/Best-README-Template 
 -->
 
+![java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 ![docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![[mysql]](https://img.shields.io/badge/Mysql-316192?style=for-the-badge&logo=mysql&logoColor=white)
+![[kubernetes]](https://img.shields.io/badge/Kubernetes-3069DE?style=for-the-badge&logo=kubernetes&logoColor=white)
+
 
 
 
@@ -18,7 +21,7 @@
 
 ## Sobre o Projeto
 
-Projeto realizado para a primeira entrega da pós graduação em [Software Architecture da FIAP](https://postech.fiap.com.br/curso/software-architecture/).
+Projeto atualizado para a segunda entrega da pós graduação em [Software Architecture da FIAP](https://postech.fiap.com.br/curso/software-architecture/).
 
 Link do miro: https://miro.com/app/board/uXjVKTJ4mvk=/?share_link_id=556895060297
 
@@ -52,7 +55,26 @@ A instalação é bem simples, siga as seguintes etapas:
    ```
    http://localhost:8080/
    ```
-   
+## Kubernetes
+Da para rodar localmente nossa arquitetura usando o minikube, siga os seguintes passos:
+1. Inicie o minikube
+   ```sh
+   minikube start
+   ```
+2. Entre na pasta do kubernetes dentro do nosso projeto
+   ```sh
+   cd kubernetes/
+   ```
+3. Agora execute o script
+   ```sh
+   bash configure.sh
+   ```
+4. Só acessar a url com ip do cluster que foi mostrado na execução do script
+   ```sh
+   http://IP_DO_CLUSTER:30000/
+   ```
+
+
 ## Exemplos de requests
 
 As requests podem ser feitas na seguinte ordem:
