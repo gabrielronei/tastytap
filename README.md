@@ -78,8 +78,7 @@ Da para rodar localmente nossa arquitetura usando o minikube, siga os seguintes 
 
 
 ## Exemplos de requests
-
-As requests podem ser feitas na seguinte ordem:
+Temos o arquivo <a href="https://github.com/gabrielronei/tastytap/blob/main/tastytap%20-%20fiap.postman_collection.json">tastytap-fiap.postman_collection.json</a> que pode ser importado no Postman ou em seu API Client de preferência(insomnia, testfully e etc), já estão estruturadas na ordem correta, ou caso prefira, pode seguir os exemplos abaixo:
 
 <details>
   <summary>1. Criar usuário (opcionalmente): </summary>
