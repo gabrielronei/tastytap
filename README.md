@@ -267,8 +267,11 @@ As requests podem ser feitas na seguinte ordem:
 
 
 ## Por dentro de nossa arquitetura
-Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
-![TECH CHALLENGE 2 - ARQUITETURA - FIAP drawio (1)](https://github.com/user-attachments/assets/54f3f0c4-5ab7-47a2-a9ac-980a0072f6d6)
+
+Nós fizemos os componentes da nossa aplicação bem desacoplados, protegendo nosso nucleo do sistema ao máximo, seguindo a ideia da clean architecture.
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/2882544c-9b96-49f7-b8ad-1d29c4c3ebe0" width="250px"/>
+</div>
 
 Basicamente a nossa divisão dos pacotes funciona da seguinte maneira:
 - **Domain**: este é o core da nossa aplicação, lá se encontram nossos objetos de negócio que encapsulam as regras centrais de nosso sistema.
@@ -277,6 +280,9 @@ Basicamente a nossa divisão dos pacotes funciona da seguinte maneira:
 - **Infraestructure**: aqui estão nossas pontes com a camada de aplicação em conjunto com o framework, é onde eles se juntam.
 - **Presentation**: Onde ficam nossos endpoints, a comunicação com nossa camada mais externa, que no caso desse projeto, é somente web.
 
+
+Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
+![TECH CHALLENGE 2 - ARQUITETURA - FIAP drawio (1)](https://github.com/user-attachments/assets/54f3f0c4-5ab7-47a2-a9ac-980a0072f6d6)
 
 
 <p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
