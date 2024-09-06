@@ -1,6 +1,6 @@
 package br.com.fiap.tastytap.presentation.user;
 
-import br.com.fiap.tastytap.insfraestructure.user.UserRepository;
+import br.com.fiap.tastytap.application.user.UserGateway;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -8,10 +8,10 @@ import org.springframework.validation.Validator;
 @Component
 public class UniqueUserValidator implements Validator {
 
-    public final UserRepository userRepository;
+    private final UserGateway userGateway;
 
-    public UniqueUserValidator(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UniqueUserValidator(UserGateway userGateway) {
+        this.userGateway = userGateway;
     }
 
     @Override
@@ -25,14 +25,14 @@ public class UniqueUserValidator implements Validator {
 
         final NewUserForm newUserForm = (NewUserForm) target;
 
-        var possibleUser = userRepository.findByEmail(newUserForm.getEmail());
+        var possibleUser = userGateway.findByEmail(newUserForm.getEmail());
 
         if (possibleUser.isPresent()) {
             errors.reject("", "já existe um usuario com este email!");
             return;
         }
 
-        possibleUser = userRepository.findByCpf(newUserForm.getDomainCPF().getCPFWithoutPonctuation());
+        possibleUser = userGateway.findByCPF(newUserForm.getDomainCPF());
         if (possibleUser.isPresent()) {
             errors.reject("", "já existe um usuario com este cpf!");
         }
