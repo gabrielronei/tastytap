@@ -12,13 +12,14 @@ spec:
       labels:
         app: tastytap
     spec:
-      initContainers:
-        - name: wait-for-mysql
-          image: appropriate/curl
-          command: [ 'sh', '-c', 'until nc -z -v -w30 tastytap-mysql 3306; do echo "Waiting for MySQL..."; sleep 2; done;' ]
+#      initContainers:
+#        - name: wait-for-mysql
+#          image: appropriate/curl
+#          command: [ 'sh', '-c', 'until nc -z -v -w30 tastytap-mysql 3306; do echo "Waiting for MySQL..."; sleep 2; done;' ]
       containers:
         - name: app
-          image: "gabrielronei/tastytap:latest"
+#          image: "gabrielronei/tastytap:latest"
+          image: 264927492157.dkr.ecr.us-east-1.amazonaws.com/tastytap:latest
           ports:
             - containerPort: 8080
           envFrom:
