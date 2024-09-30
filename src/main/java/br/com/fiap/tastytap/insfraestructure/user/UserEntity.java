@@ -47,6 +47,14 @@ public class UserEntity {
         this.createdAt = user.getCreatedAt();
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
     public User toDomain() {
         return new User(this.id, this.name, this.email, this.cpf, this.createdAt, this.role);
     }

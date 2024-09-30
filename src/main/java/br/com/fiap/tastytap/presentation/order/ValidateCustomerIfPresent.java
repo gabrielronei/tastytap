@@ -1,6 +1,7 @@
 package br.com.fiap.tastytap.presentation.order;
 
-import br.com.fiap.tastytap.application.user.UserGateway;
+import br.com.fiap.tastytap.domain.user.User;
+import br.com.fiap.tastytap.insfraestructure.security.CurrentUser;
 import br.com.fiap.tastytap.utils.ValidationUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -9,10 +10,10 @@ import java.util.Optional;
 
 public class ValidateCustomerIfPresent implements Validator {
 
-    private final UserGateway userGateway;
+    private final CurrentUser currentUser;
 
-    public ValidateCustomerIfPresent(UserGateway userGateway) {
-        this.userGateway = userGateway;
+    public ValidateCustomerIfPresent(CurrentUser currentUser) {
+        this.currentUser = currentUser;
     }
 
     @Override
@@ -23,14 +24,14 @@ public class ValidateCustomerIfPresent implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         if (errors.hasErrors()) return;
-        NewOrderForm newOrderForm = (NewOrderForm) target;
+        CurrentUser currentUser = this.currentUser;
 
-        Optional<String> possibleCpf = newOrderForm.getPossibleCpf();
-        possibleCpf.ifPresent(cpf -> {
-            boolean isValid = ValidationUtils.isValidCpf(cpf);
+        Optional<User> possibleUser = currentUser.getPossibleUser();
+        possibleUser.ifPresent(user -> {
+            boolean isValid = ValidationUtils.isValidCpf(user.getCpf());
 
             if (!isValid) {
-                errors.rejectValue("cpf", null, "CPF invalido!");
+                errors.rejectValue(null, null, "CPF invalido!");
             }
         });
     }
