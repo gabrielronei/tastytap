@@ -7,6 +7,7 @@ import br.com.fiap.tastytap.application.order.retrieve.GetOrderStatusByNumberUse
 import br.com.fiap.tastytap.application.order.update.UpdateOrderStatusUseCase;
 import br.com.fiap.tastytap.application.product.ProductGateway;
 import br.com.fiap.tastytap.application.user.UserGateway;
+import br.com.fiap.tastytap.insfraestructure.security.CurrentUser;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,30 +20,30 @@ import java.util.Optional;
 @RestController
 public class OrderController implements OrderControllerDocs {
 
-    private final UserGateway userGateway;
     private final ProductGateway productGateway;
     private final CreateOrderUseCase createOrderUseCase;
     private final FindOrdersUseCase findOrdersUseCase;
     private final UpdateOrderStatusUseCase updateOrderStatusUseCase;
     private final GetOrderStatusByNumberUseCase getOrderStatusByNumberUseCase;
+    private final CurrentUser currentUser;
 
-    public OrderController(UserGateway userGateway,
-                           ProductGateway productGateway,
+    public OrderController(ProductGateway productGateway,
                            CreateOrderUseCase createOrderUseCase,
                            FindOrdersUseCase findOrdersUseCase,
                            UpdateOrderStatusUseCase updateOrderStatusUseCase,
-                           GetOrderStatusByNumberUseCase getOrderStatusByNumberUseCase) {
-        this.userGateway = userGateway;
+                           GetOrderStatusByNumberUseCase getOrderStatusByNumberUseCase, CurrentUser currentUser) {
         this.productGateway = productGateway;
         this.createOrderUseCase = createOrderUseCase;
         this.findOrdersUseCase = findOrdersUseCase;
         this.updateOrderStatusUseCase = updateOrderStatusUseCase;
         this.getOrderStatusByNumberUseCase = getOrderStatusByNumberUseCase;
+        this.currentUser = currentUser;
     }
 
     @InitBinder("newOrderForm")
     public void init(WebDataBinder binder) {
-        binder.addValidators(new ValidateCustomerIfPresent(userGateway), new ProductsValidator(productGateway));
+        binder.addValidators(new ValidateCustomerIfPresent(currentUser),
+                new ProductsValidator(productGateway));
     }
 
     @GetMapping("/order")
@@ -53,6 +54,7 @@ public class OrderController implements OrderControllerDocs {
     @Transactional
     @PostMapping("/order")
     public ResponseEntity<?> addOrder(@Valid @RequestBody NewOrderForm form) {
+        currentUser.getPossibleUser().ifPresent(user -> form.setCpf(user.getCpf()));
         Optional<NewOrderView> possibleOrder = this.createOrderUseCase.execute(form);
 
         return possibleOrder.map(order -> ResponseEntity.status(HttpStatus.CREATED).body(order))
