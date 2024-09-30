@@ -23,8 +23,8 @@ spec:
           ports:
             - containerPort: 8080
           envFrom:
-            - configMapRef:
-                name: general-config-map
+#            - configMapRef:
+#                name: general-config-map
             - secretRef:
                 name: app-secrets
           resources:

@@ -4,6 +4,7 @@ metadata:
   name: tastytap-auto-scaling
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "alb"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internal"
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
