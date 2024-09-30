@@ -20,5 +20,5 @@ jobs:
 
       - name: Run ECR Build Script
         run: |
-          chmod +x ./build/ecr-deploy.sh
+#          chmod +x ./build/ecr-deploy.sh
           AWS_ACCOUNT_ID=${{ secrets.AWS_ACCOUNT_ID }} AWS_REGION=${{ secrets.AWS_REGION }} ./build/ecr-build.sh
