@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  EKS_CLUSTER = ${{ secrets.EKS_CLUSTER }}
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -34,25 +31,25 @@ jobs:
         with:
           command: "apply -f kubernetes/app-secrets.yaml"
         env:
-          EKS_CLUSTER: ${{ env.EKS_CLUSTER }}
+          EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
 
       - name: Run Auto Scale Config
         uses: nikosch86/github-action-eks-kubectl@main
         with:
           command: "apply -f kubernetes/app-autoscaling-config.yaml.yaml"
         env:
-          EKS_CLUSTER: ${{ env.EKS_CLUSTER }}
+          EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
 
       - name: Run Service
         uses: nikosch86/github-action-eks-kubectl@main
         with:
           command: "apply -f kubernetes/app-service.yaml.yaml"
         env:
-          EKS_CLUSTER: ${{ env.EKS_CLUSTER }}
+          EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
 
       - name: Run Deploy
         uses: nikosch86/github-action-eks-kubectl@main
         with:
           command: "apply -f kubernetes/app-deployment.yaml.yaml"
         env:
-          EKS_CLUSTER: ${{ env.EKS_CLUSTER }}
+          EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
