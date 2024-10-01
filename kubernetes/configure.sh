@@ -1,10 +1,15 @@
 #!/bin/bash
 
+echo "Aguardando o cluster EKS estar ativo..."
+aws eks wait cluster-active --name tastytap-cluster
+
+echo "Atualizando o kubeconfig para o cluster EKS..."S
+aws eks update-kubeconfig --name "tastytap-cluster" --region "us-east-1"
+
+echo "Iniciando o deploy..."
+
 FILES=(
-  "mysql-secrets.yaml"
-  "mysql-deployment.yaml"
   "app-secrets.yaml"
-  "app-configmap.yaml"
   "app-autoscaling-config.yaml"
   "app-service.yaml"
   "app-deployment.yaml"
@@ -20,7 +25,6 @@ for FILE in "${FILES[@]}"; do
 done
 
 EXTERNAL_IP=$(kubectl get nodes -o wide | grep -v NAME | awk '{print $6}')
-
 echo "EXTERNAL-IP: $EXTERNAL_IP"
 
 echo "Todas as configurações foram aplicadas."

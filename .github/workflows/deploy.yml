@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  EKS_CLUSTER = ${{ secrets.EKS_CLUSTER }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+
+      - name: Set up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Run Secrets
+        uses: nikosch86/github-action-eks-kubectl@main
+        with:
+          command: "apply -f kubernetes/app-secrets.yaml"
+        env:
+          EKS_CLUSTER: ${{ env.EKS_CLUSTER }}
+
+      - name: Run Auto Scale Config
+        uses: nikosch86/github-action-eks-kubectl@main
+        with:
+          command: "apply -f kubernetes/app-autoscaling-config.yaml.yaml"
+        env:
+          EKS_CLUSTER: ${{ env.EKS_CLUSTER }}
+
+      - name: Run Service
+        uses: nikosch86/github-action-eks-kubectl@main
+        with:
+          command: "apply -f kubernetes/app-service.yaml.yaml"
+        env:
+          EKS_CLUSTER: ${{ env.EKS_CLUSTER }}
+
+      - name: Run Deploy
+        uses: nikosch86/github-action-eks-kubectl@main
+        with:
+          command: "apply -f kubernetes/app-deployment.yaml.yaml"
+        env:
+          EKS_CLUSTER: ${{ env.EKS_CLUSTER }}
