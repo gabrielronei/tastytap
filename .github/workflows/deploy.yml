@@ -43,7 +43,7 @@ jobs:
       - name: Run Service
         uses: nikosch86/github-action-eks-kubectl@main
         with:
-          command: "apply -f kubernetes/app-service.yaml.yaml"
+          command: "apply -f kubernetes/app-service.yaml"
         env:
           EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
 
