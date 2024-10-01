@@ -36,7 +36,7 @@ jobs:
       - name: Run Auto Scale Config
         uses: nikosch86/github-action-eks-kubectl@main
         with:
-          command: "apply -f kubernetes/app-autoscaling-config.yaml.yaml"
+          command: "apply -f kubernetes/app-autoscaling-config.yaml"
         env:
           EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
 
