@@ -18,7 +18,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Run ECR Build Script
+      - name: un ECR Build Script
+        env:
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_REGION }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-#          chmod +x ./build/ecr-deploy.sh
-          AWS_ACCOUNT_ID=${{ secrets.AWS_ACCOUNT_ID }} AWS_REGION=${{ secrets.AWS_REGION }} ./build/ecr-build.sh
+          chmod +x ./build/ecr-build.sh
+          ./build/ecr-build.sh
