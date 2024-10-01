@@ -50,6 +50,6 @@ jobs:
       - name: Run Deploy
         uses: nikosch86/github-action-eks-kubectl@main
         with:
-          command: "apply -f kubernetes/app-deployment.yaml.yaml"
+          command: "apply -f kubernetes/app-deployment.yaml"
         env:
           EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
