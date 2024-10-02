@@ -304,9 +304,10 @@ Basicamente a nossa divisão dos pacotes funciona da seguinte maneira:
 Temos nossa infraestrutura com um LoadBalancer na aplicação principal(tastytap), para suportar grande volume de requisições simultaneas, onde o minimo são 2 máquinas e podendo escalar até 6.
 ![image](https://github.com/user-attachments/assets/fbacff87-69c8-40de-814e-c1e037b7f61f)
 
-<p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
-
 ### Arquitetura da infra na cloud
-Nossa infraestrutura ficou definida assim dentrou da cloud, completa do projeto:
+Nossa infraestrutura ficou definida assim dentro da aws e seus respectivos serviços ficaram assim:
+![image](https://github.com/user-attachments/assets/bb346e35-bc15-472c-9daf-87791e9ae67b)
 
 
+
+<p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
