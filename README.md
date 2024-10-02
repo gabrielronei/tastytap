@@ -27,6 +27,14 @@ Link do miro: https://miro.com/app/board/uXjVKTJ4mvk=/?share_link_id=55689506029
 
 Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
 
+## Repositorios
+**Link do repositorio da aplicação:** https://github.com/gabrielronei/tastytap
+
+**Link do repositorio do lambda:** https://github.com/gabrielronei/tastytap-auth
+
+**Link do repositorio do rds:** https://github.com/thaisandre/terraform-tastytap-rds
+
+**Link do repositorio do terraform:** https://github.com/thaisandre/terraform-tastytap-infra
 
 ## Começando
 
