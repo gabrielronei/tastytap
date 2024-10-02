@@ -110,6 +110,17 @@ Temos o arquivo <a href="https://github.com/gabrielronei/tastytap/blob/main/tast
 </details>
 
 <details>
+  <summary>2.5 Pegar token do usuário (opcionalmente): </summary>
+
+  ```json
+// POST no serviço do `tastytap-auth`
+{
+  "body": '{\n    "cpf": "285.977.970-10"\n}'
+}
+```
+</details>
+
+<details>
   <summary>3. Criar produto de tipo lanche: </summary>
 
   ```json
@@ -294,3 +305,8 @@ Temos nossa infraestrutura com um LoadBalancer na aplicação principal(tastytap
 ![image](https://github.com/user-attachments/assets/fbacff87-69c8-40de-814e-c1e037b7f61f)
 
 <p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
+
+### Arquitetura da infra na cloud
+Nossa infraestrutura ficou definida assim dentrou da cloud, completa do projeto:
+
+

@@ -51,6 +51,32 @@
 			"response": []
 		},
 		{
+			"name": "2 - user - authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"285.977.970-10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/auth",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "3 - product - create - sandwich",
 			"request": {
 				"method": "POST",
@@ -223,7 +249,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"cpf\": \"285.977.970-10\",\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    },\n    {\n      \"productId\": 3,\n      \"quantity\": 2\n    }\n  ]\n}",
+					"raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    }\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -245,11 +271,21 @@
 		{
 			"name": "7 - order - create order without user",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIyODU5Nzc5NzAxMCIsImlhdCI6MTcyNzgzMjM0MywiZXhwIjoxNzI3ODM1OTQzfQ.ynRdBL6PsjvUJu8BYNgvX22DL8pSUPlATZOW_-fkcjE",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    }\n  ]\n}",
+					"raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 4\n    }\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -271,6 +307,16 @@
 		{
 			"name": "8 - order - findAll",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiI1MTMxMzk1NzgwMSIsImlhdCI6MTcyNjEwNzY0OCwiZXhwIjoxNzI2MTExMjQ4fQ.KETf-YPkIPWEEz97k3tdt2uJ-4TvLRFDGVK_T85gz34",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -379,12 +425,12 @@
 		},
 		{
 			"key": "ORDER_NUMBER",
-			"value": "1722262656",
+			"value": "1722308026",
 			"type": "string"
 		},
 		{
 			"key": "TRANSACTION_ID",
-			"value": "1722262657",
+			"value": "1722308027",
 			"type": "string"
 		},
 		{
