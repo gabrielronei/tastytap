@@ -16,7 +16,7 @@ public class PaymentWebhookController implements PaymentWebhookControllerDocs {
     }
 
     @Transactional
-    @PostMapping("/payment/provider/webhook")
+    @PostMapping("/payment/webhook")
     public ResponseEntity<?> webhook(@Valid @RequestBody PaymentNotificationRequest request) {
         updateOrderPaymentStatusUseCase.execute(request);
         return ResponseEntity.ok().build();
