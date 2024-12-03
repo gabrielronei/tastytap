@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: general-config-map
-data:
-  SPRING_DATASOURCE_URL: "jdbc:mysql://tastytap.czeoq6cwkf0t.us-east-1.rds.amazonaws.com:3306/tastytap?createDatabaseIfNotExist=true&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true"
-  SPRING_DATASOURCE_USERNAME: "db_username"
-  SPRING_DATASOURCE_PASSWORD: "db_password"
