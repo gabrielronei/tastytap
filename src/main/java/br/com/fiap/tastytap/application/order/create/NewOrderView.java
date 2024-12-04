@@ -1,8 +1,8 @@
 package br.com.fiap.tastytap.application.order.create;
 
-import br.com.fiap.tastytap.application.user.SimpleUserView;
 import br.com.fiap.tastytap.domain.order.Order;
 import br.com.fiap.tastytap.domain.order.OrderItem;
+import br.com.fiap.tastytap.domain.user.CPF;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,14 +10,14 @@ import java.util.List;
 public class NewOrderView {
 
     private final Long number;
-    private final SimpleUserView user;
+    private final String userDocument;
     private final BigDecimal totalPrice;
     private final List<NewOrderItemView> items;
     private final String qrCodeUrl;
 
     public NewOrderView(Order order) {
         this.number = order.getNumber();
-        this.user = order.getPossibleUser().map(SimpleUserView::new).orElse(null);
+        this.userDocument = order.getPossibleUserId().map(CPF::getCPF).orElse(null);
         this.totalPrice = order.getTotal();
         this.items = order.getOrderItems().stream().map(NewOrderView.NewOrderItemView::new).toList();
         this.qrCodeUrl = order.getQrCodeUrl();
@@ -27,8 +27,8 @@ public class NewOrderView {
         return number;
     }
 
-    public SimpleUserView getUser() {
-        return user;
+    public String getUser() {
+        return userDocument;
     }
 
     public BigDecimal getTotalPrice() {

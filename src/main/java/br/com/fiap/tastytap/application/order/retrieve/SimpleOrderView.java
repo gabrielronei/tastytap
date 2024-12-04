@@ -2,7 +2,7 @@ package br.com.fiap.tastytap.application.order.retrieve;
 
 import br.com.fiap.tastytap.domain.order.Order;
 import br.com.fiap.tastytap.domain.order.OrderItem;
-import br.com.fiap.tastytap.domain.user.User;
+import br.com.fiap.tastytap.domain.user.CPF;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,7 +22,7 @@ public final class SimpleOrderView {
         this.transactionId = order.getTransactionId();
         this.status = order.getStatus().name();
         this.paymentStatus = order.getPaymentStatus().name();
-        this.user = order.getPossibleUser().map(User::getCpf).orElse(null);
+        this.user = order.getPossibleUserId().map(CPF::getCPF).orElse(null);
         this.totalPrice = order.getTotal();
         this.items = order.getOrderItems().stream().map(SimpleOrderItemView::new).toList();
     }

@@ -3,7 +3,7 @@ package br.com.fiap.tastytap.insfraestructure.order;
 import br.com.fiap.tastytap.domain.order.Order;
 import br.com.fiap.tastytap.domain.order.PaymentStatus;
 import br.com.fiap.tastytap.domain.order.Status;
-import br.com.fiap.tastytap.insfraestructure.user.UserEntity;
+import br.com.fiap.tastytap.domain.user.CPF;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
@@ -27,9 +27,8 @@ public class OrderEntity {
     private LocalDateTime createdAt;
 
     @Nullable
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @Column(name = "user_document")
+    private String userDocument;
 
     @NotNull
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -62,7 +61,7 @@ public class OrderEntity {
     public OrderEntity(Order order) {
         this.id = order.getId();
         this.createdAt = order.getCreatedAt();
-        this.user = order.getPossibleUser().map(UserEntity::new).orElse(null);
+        this.userDocument = order.getPossibleUserId().map(CPF::getCPFWithoutPonctuation).orElse(null);
         this.items = order.getOrderItems().stream().map(OrderItemEntity::new).toList();
         this.status = order.getStatus();
         this.total = order.getTotal();
@@ -80,8 +79,8 @@ public class OrderEntity {
         return createdAt;
     }
 
-    public Optional<UserEntity> getPossibleUser() {
-        return Optional.ofNullable(user);
+    public Optional<CPF> getPossibleUser() {
+        return Optional.ofNullable(userDocument).map(CPF::new);
     }
 
     public List<OrderItemEntity> getItems() {
@@ -103,7 +102,9 @@ public class OrderEntity {
     public Order toDomain() {
         Order order = new Order(this.id, this.items.stream().map(OrderItemEntity::toDomain).toList(), this.total,
                 this.createdAt, this.status, this.number, this.transactionId, this.paymentStatus, this.qrCodeUrl);
-        this.getPossibleUser().ifPresent(user -> order.setUser(user.toDomain()));
+
+        this.getPossibleUser().ifPresent(order::setUser);
+
         return order;
     }
 }
