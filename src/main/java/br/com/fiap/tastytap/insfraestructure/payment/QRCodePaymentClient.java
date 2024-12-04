@@ -25,8 +25,8 @@ public class QRCodePaymentClient {
 
     private final RestTemplate restTemplate;
 
-    public QRCodePaymentClient() {
-        this.restTemplate = new RestTemplate();
+    public QRCodePaymentClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     public QRCodeResponse generateQRCode(Long referenceId, BigDecimal amount) {
