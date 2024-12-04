@@ -24,6 +24,8 @@
 
 Projeto com atualizações para a quarta entrega da pós graduação em [Software Architecture da FIAP](https://postech.fiap.com.br/curso/software-architecture/).
 
+Este serviço ficou responsavel pela criação de Produtos e do Pedido em si.
+
 Link do miro: https://miro.com/app/board/uXjVKTJ4mvk=/?share_link_id=556895060297
 
 Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
@@ -319,6 +321,8 @@ Nossa infraestrutura ficou definida assim dentro da aws e seus respectivos servi
 A aplicação foi quebrada em serviços e foi adicionado o ingress-nginx no kubernetes.
 
 ![image](https://github.com/user-attachments/assets/66f6d5ac-5b1f-4b87-9b97-ab496f473885)
+
+O core(tastytap) se comunica com o serviço de users(tastytap-users) para pegar a informação do usuario que estiver logado e colocar no pedido e o core(tastytap) se comunica com payments para executar o pagamento de fato. 
 
 ### Cobertura de testes atualizada
 
