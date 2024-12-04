@@ -13,17 +13,16 @@ import java.util.Optional;
 @Service
 public class DefaultUserClient implements UserGateway {
 
-
     @Value("${users.api.url}")
     private String url;
 
     private final RestTemplate restTemplate;
 
-    public DefaultUserClient() {
-        this.restTemplate = new RestTemplate();
+    public DefaultUserClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
-    public Optional<UserResponse> findByCPF(CPF cpf) {
+    public Optional<UserResponse> findByCPF(final CPF cpf) {
         ResponseEntity<UserResponse> response = this.restTemplate.getForEntity(url + "/user/".concat(cpf.getCPFWithoutPonctuation()), UserResponse.class, cpf);
 
         return Optional.of(response)
