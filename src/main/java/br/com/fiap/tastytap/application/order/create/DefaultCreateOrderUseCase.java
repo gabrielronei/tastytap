@@ -5,11 +5,11 @@ import br.com.fiap.tastytap.application.payment.PaymentGateway;
 import br.com.fiap.tastytap.application.payment.QRCodeView;
 import br.com.fiap.tastytap.application.product.ProductGateway;
 import br.com.fiap.tastytap.application.user.UserGateway;
+import br.com.fiap.tastytap.application.user.UserResponse;
 import br.com.fiap.tastytap.domain.order.Order;
 import br.com.fiap.tastytap.domain.order.OrderItem;
 import br.com.fiap.tastytap.domain.product.Product;
 import br.com.fiap.tastytap.domain.user.CPF;
-import br.com.fiap.tastytap.domain.user.User;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -49,8 +49,11 @@ public final class DefaultCreateOrderUseCase extends CreateOrderUseCase {
                 .toList();
 
         Order order = new Order(orderItems);
-        Optional<User> possibleUser = newOrderCommand.getPossibleCpf().map(CPF::new).flatMap(userGateway::findByCPF);
-        possibleUser.ifPresent(order::setUser);
+
+        newOrderCommand.getPossibleCpf().map(CPF::new)
+                .flatMap(userGateway::findByCPF)
+                .map(UserResponse::getCpf)
+                .ifPresent(order::setUser);
 
         QRCodeView qrcode = this.paymentGateway.generateQRCode(order.getNumber(), order.getTotal());
         order.update(qrcode.transactionId(), qrcode.qrCodeUrl());

@@ -10,7 +10,6 @@ echo "Iniciando o deploy..."
 
 FILES=(
   "app-secrets.yaml"
-  "app-autoscaling-config.yaml"
   "app-service.yaml"
   "app-deployment.yaml"
 )

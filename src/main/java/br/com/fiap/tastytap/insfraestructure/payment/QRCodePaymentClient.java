@@ -17,10 +17,10 @@ import static org.springframework.http.HttpMethod.POST;
 @Service
 public class QRCodePaymentClient {
 
-    @Value("${payment.provider.url}")
+    @Value("${payment.api.url}")
     private String url;
 
-    @Value("${payment.provider.token}")
+    @Value("${payment.api.token}")
     private String token;
 
     private final RestTemplate restTemplate;
@@ -31,15 +31,12 @@ public class QRCodePaymentClient {
 
     public QRCodeResponse generateQRCode(Long referenceId, BigDecimal amount) {
         RequestEntity<QRCodeRequest> request = buildRequest(referenceId, amount);
-        try {
-            ResponseEntity<QRCodeResponse> response = this.restTemplate.exchange(request, QRCodeResponse.class);
-            return Optional.of(response)
-                    .filter(r -> r.getStatusCode().is2xxSuccessful())
-                    .map(ResponseEntity::getBody)
-                    .orElseThrow(() -> new ApiException("Error generating QR Code from provider"));
-        } catch (Exception e) {
-            throw new ApiException("Error generating QR Code from provider");
-        }
+        ResponseEntity<QRCodeResponse> response = this.restTemplate.exchange(request, QRCodeResponse.class);
+        return Optional.of(response)
+                .filter(r -> r.getStatusCode().is2xxSuccessful())
+                .map(ResponseEntity::getBody)
+                .orElseThrow(() -> new ApiException("Error generating QR Code from provider",
+                        response.getStatusCode().value()));
     }
 
     private RequestEntity<QRCodeRequest> buildRequest(Long referenceId, BigDecimal amount) {

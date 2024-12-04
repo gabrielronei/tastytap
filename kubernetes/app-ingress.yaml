@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: microservices-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: "/tastytap"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tastytap
+                port:
+                  number: 80
+          - path: "/payments"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tastytap-payments
+                port:
+                  number: 80
+          - path: "/tastytap-users"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tastytap-users
+                port:
+                  number: 80

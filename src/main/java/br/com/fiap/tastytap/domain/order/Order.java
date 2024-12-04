@@ -1,6 +1,6 @@
 package br.com.fiap.tastytap.domain.order;
 
-import br.com.fiap.tastytap.domain.user.User;
+import br.com.fiap.tastytap.domain.user.CPF;
 import br.com.fiap.tastytap.utils.NumberGenerator;
 import br.com.fiap.tastytap.utils.ValidationUtils;
 
@@ -14,7 +14,7 @@ import static br.com.fiap.tastytap.domain.order.Status.RECEIVED;
 public class Order {
 
     private Long id;
-    private User user;
+    private CPF userDocument;
     private List<OrderItem> items = new ArrayList<>();
     private BigDecimal total;
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -57,8 +57,8 @@ public class Order {
         return id;
     }
 
-    public Optional<User> getPossibleUser() {
-        return Optional.ofNullable(user);
+    public Optional<CPF> getPossibleUserId() {
+        return Optional.ofNullable(userDocument);
     }
 
     public List<OrderItem> getOrderItems() {
@@ -108,8 +108,8 @@ public class Order {
         this.qrCodeUrl = qrCodeUrl;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(CPF cpf) {
+        this.userDocument = cpf;
     }
 
     public void setPaymentStatus(PaymentStatus paymentStatus) {
