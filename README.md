@@ -9,6 +9,7 @@
 ![docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![[mysql]](https://img.shields.io/badge/Mysql-316192?style=for-the-badge&logo=mysql&logoColor=white)
 ![[kubernetes]](https://img.shields.io/badge/Kubernetes-3069DE?style=for-the-badge&logo=kubernetes&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
 
 
@@ -21,20 +22,26 @@
 
 ## Sobre o Projeto
 
-Projeto atualizado para a segunda entrega da pós graduação em [Software Architecture da FIAP](https://postech.fiap.com.br/curso/software-architecture/).
+Projeto com atualizações para a quarta entrega da pós graduação em [Software Architecture da FIAP](https://postech.fiap.com.br/curso/software-architecture/).
 
 Link do miro: https://miro.com/app/board/uXjVKTJ4mvk=/?share_link_id=556895060297
 
 Link do desenho da arquitetura: https://drive.google.com/file/d/186D8N2BxR907FRHDmWTzllt5tJ4GfxJi/view?usp=drive_link
 
 ## Repositorios
-**Link do repositorio da aplicação:** https://github.com/gabrielronei/tastytap
+**Link do repositorio da aplicação users:** https://github.com/gabrielronei/tastytap-users
 
-**Link do repositorio do lambda:** https://github.com/gabrielronei/tastytap-auth
+**Link do repositorio do payments:** https://github.com/thaisandre/tastytap-payments
+
+**Link do repositorio do terraform:** https://github.com/thaisandre/terraform-tastytap-infra
+
+**Link do repositorio do database:** https://github.com/thaisandre/terraform-tastytap-database
 
 **Link do repositorio do rds:** https://github.com/thaisandre/terraform-tastytap-rds
 
 **Link do repositorio do terraform:** https://github.com/thaisandre/terraform-tastytap-infra
+
+**Link do repositorio do lambda:** https://github.com/gabrielronei/tastytap-auth
 
 ## Começando
 
@@ -308,6 +315,14 @@ Temos nossa infraestrutura com um LoadBalancer na aplicação principal(tastytap
 Nossa infraestrutura ficou definida assim dentro da aws e seus respectivos serviços ficaram assim:
 ![image](https://github.com/user-attachments/assets/bb346e35-bc15-472c-9daf-87791e9ae67b)
 
+## Desenho atualizado para quarta entrega
+A aplicação foi quebrada em serviços e foi adicionado o ingress-nginx no kubernetes.
+
+![image](https://github.com/user-attachments/assets/66f6d5ac-5b1f-4b87-9b97-ab496f473885)
+
+### Cobertura de testes atualizada
+
+![image](https://github.com/user-attachments/assets/3761c1f3-4a83-4624-a821-56586bb49b0d)
 
 
 <p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
